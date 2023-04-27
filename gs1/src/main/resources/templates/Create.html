@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" id="FormularioViagem">
+		<label for="Data">Data de decolagem:</label>
+		<input type="date" name="data" id="data" value="22/06/2003"><br>
+		
+		<label for="dias">Dias de estadia:</label> 	
+		<input type="hidden" name="dias" id="dias" value="7"><br>
+		
+		<label for="descricao">Descrição:</label>
+		<input type="text" name="descricao" id="descricao" value="Monitor wide"><br>
+
+		<label for="valor">Valor:</label>
+		 <input type="number" name="valor" id="valor" value="10"><br>
+		 
+		<label for="codigo">Código:</label>
+		<input type="text" name="codigo" id="codigo" value="AAAA0000A"><br>
+
+		<label for="quantidade">Quantidade:</label>
+		<input type="number" name="quantidade" id="quantidade" value="2"><br> 
+		 
+		<label	for="status">Status:</label> 
+		<input type="number" name="status" id="status" value="1"><br>
+
+
+	</form>
+<!-- 	//botao para salvar as informações -->
+	<input type="button" onclick="salvar()" value="Enviar">
+	
+<!-- 	//lista com erros -->
+	<ul id="erros"></ul>
+
+
+<!-- 	//javascript para criação de metodo de salvar no botao e listagem de erros -->
+	<script type="text/javascript">
+
+let responseEntity;
+//metodo para usar no botao para salvar informações
+function salvar(){
+	//variavel para pegar o valor dado no formulario
+	const form = document.getElementById("frmProduto");
+	const formData = new FormData(form);
+	const jsonBody = JSON.stringify(Object.fromEntries(formData.entries()));
+	
+	const header = new Headers();	
+	header.append("Content-Type", "application/json");
+	
+	const requestOptions = {
+			method: 'POST',
+			headers: header,
+			body: jsonBody
+	}
+	
+	fetch("/create", requestOptions)
+		.then(response => {
+			responseEntity = response;
+			return response.json();			
+		})
+		.then(data => tratarErro(data));	
+}
+
+function tratarErro(data){
+	if(responseEntity.ok){
+		alert("Produto cadastrado");
+		return;
+	}
+	
+	let listaErros = document.getElementById("erros");
+	listaErros.innerHTML = '';
+	let erro = '';
+	
+	if(data.hasOwnProperty("nome"))
+		erro = `<li>${data.nome}</li>`;
+	
+	if(data.hasOwnProperty("descricao"))
+		erro += `<li>${data.descricao}</li>`;
+		
+	if(data.hasOwnProperty("codigo"))
+		erro += `<li>${data.codigo}</li>`;
+	
+	if(data.hasOwnProperty("quantidade"))
+		erro += `<li>${data.quantidade}</li>`;			
+	
+	listaErros.innerHTML = erro;
+}
+
+</script>
+</body>
+</html>

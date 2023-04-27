@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<table>
+
+		<thead>
+
+			<tr>
+
+				<th>Data Decolagem</th>
+				<th>dias</th>
+				<th>assentos disponiveis</th>
+				<th>modelo nave</th>
+				<th>Primeiro Comandante</th>
+				<th>Matricula 1 Comandante</th>
+				<th>Segundo Comandante</th>
+				<th>Matricula 2 Comandante</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<tr th:each="dados : ${viagem}">
+
+				<td th:text="${dados.getdata()}"></td>
+				<td th:text="${dados.getdias()}"></td>
+				<td th:text="${dados.getassentos disponiveis()}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
