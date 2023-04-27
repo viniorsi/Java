@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+<!-- 	cria tabela dos produtos -->
+	<table>
+<!-- 	cria o cabeçalho da tabela -->
+		<thead>
+<!-- 		//linha do cabeção -->
+			<tr>
+<!-- 			//colunas do cabeçalho -->
+				<th>Nome</th>
+				<th>Valor</th>
+				<th>Quantidade</th>
+			</tr>
+		</thead>
+<!-- 		//corpo da tabela -->
+		<tbody>
+<!-- 		//usamos o thymeleaf para fazer um for para criar linhas para cada produto -->
+			<tr th:each="produto : ${produtos}">
+<!-- 			//colunas sao preenchidas com os dados do produto que foi usado no for each -->
+				<td th:text="${produto.getNome()}"></td>
+				<td th:text="${produto.getValor()}"></td>
+				<td th:text="${produto.getQuantidade()}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
