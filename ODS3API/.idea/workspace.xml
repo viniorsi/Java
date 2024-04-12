@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a755b153-1d29-4dec-a2ae-cf8233ba2f3d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/Controllers/ODS3Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/DTO/DtoIndicadores.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/DTO/DtoIndicadoresOds3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/DTO/DtoOds3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/DTO/DtoOds3ListaId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/DTO/DtoRegiao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/Entities/Indicadores.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/Entities/ODS3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/Entities/Objetivos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/Entities/Regiao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/Ods3Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/Repositories/IndicadoresRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/Repositories/Ods3Repository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/fiap/ODS3/Repositories/RegiaoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__create-tables-ods3-indices-regiao.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/br/com/fiap/ODS3/Ods3ApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2YZ0sbFDcJicSKPlLmWdYXs6vCL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/User/Desktop/ODS3API/BackEnd",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a755b153-1d29-4dec-a2ae-cf8233ba2f3d" name="Changes" comment="" />
+      <created>1700718001762</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700718001762</updated>
+      <workItem from="1700718003214" duration="31000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

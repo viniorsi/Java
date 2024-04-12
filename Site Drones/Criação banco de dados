@@ -1,0 +1,106 @@
+DROP TABLE USUARIO CASCADE CONSTRAINTS;
+DROP TABLE TELEMETRIA CASCADE CONSTRAINTS;
+DROP TABLE DRONE CASCADE CONSTRAINTS;
+DROP TABLE LICENCA_VOO CASCADE CONSTRAINTS;
+DROP TABLE HISTORICO_VOO CASCADE CONSTRAINTS;
+  
+  
+
+  
+CREATE SEQUENCE idDrone_seq
+START WITH    1
+INCREMENT BY  1
+MAXVALUE     9999;
+
+CREATE SEQUENCE idTelemetria_seq
+START WITH    1
+INCREMENT BY  1
+MAXVALUE     9999;
+
+CREATE SEQUENCE idLicenca_voo_seq
+START WITH    1
+INCREMENT BY  1
+MAXVALUE     9999;
+
+CREATE SEQUENCE historicoid_seq
+START WITH    1
+INCREMENT BY  1
+MAXVALUE     9999;
+
+
+  
+  
+  CREATE TABLE usuario(
+  
+  idUsuario      NUMBER (4)      NOT NULL,
+  senha    VARCHAR2(40)    NOT NULL,
+  cargo   VARCHAR2(25)    NOT NULL,
+  
+  CONSTRAINT idUsuario_pk PRIMARY KEY(idUsuario)
+  );
+  
+
+    
+ CREATE TABLE TELEMETRIA(
+ 
+ idTelemetria    NUMBER(4)      NOT NULL,
+ idDrone      NUMBER(4)      NOT NULL,
+ latitude     VARCHAR2(30)   NOT NULL,
+ longitude    VARCHAR2(30)   NOT NULL,
+ velocidade   VARCHAR2(30)   NOT NULL,
+ direcao      VARCHAR2(30)   NOT NULL,
+ dataHora     DATE           NOT NULL
+ 
+ );
+ 
+ 
+CREATE TABLE DRONE(
+
+idDrone             number(4)      NOT NULL,
+modelo              VARCHAR2(30)   NOT NULL,
+dataCompra          DATE           NOT NULL,
+capacidadeBateria   VARCHAR2(30)   NOT NULL,
+numeroSerie         VARCHAR2(30)   NOT NULL,
+capacidadeCarga     VARCHAR2(30)   NOT NULL,
+IdLicenca           number(4)    NOT NULL,
+
+CONSTRAINT id_drone_pk PRIMARY KEY(idDrone)
+
+);
+ 
+
+CREATE TABLE LICENCA_VOO(
+
+idLicenca       NUMBER(4)    NOT NULL,
+idDrone         NUMBER(4)    NOT NULL,
+licencaVoo      VARCHAR2(30) NOT NULL,
+dataValidade    DATE         NOT NULL,
+dataEmissao     DATE         NOT NULL,
+
+CONSTRAINT id_licenca_pk PRIMARY KEY(idLicenca)
+
+); 
+
+    
+CREATE TABLE HISTORICO_VOO(
+
+idVoo               NUMBER(4)       NOT NULL,
+idDrone             NUMBER(4)       NOT NULL,
+latitudeIncioVoo    VARCHAR2(30)    NOT NULL,
+longitudeInicioVoo  VARCHAR2(30)    NOT NULL,
+latitudeFimVoo      VARCHAR2(30)    NOT NULL,
+longitudeFimVoo     VARCHAR2(30)    NOT NULL,
+altitudeMedia       VARCHAR2(30)    NOT NULL,
+velocidadeMedia     VARCHAR2(30)    NOT NULL,
+dataDecolagem       DATE            NOT NULL,
+dataAterrisagem     DATE            NOT NULL,
+
+CONSTRAINT id_voo_pk PRIMARY KEY(idVoo)
+
+);
+
+
+ 
+ALTER TABLE TELEMETRIA     ADD CONSTRAINT idDrone_telemetria_fk FOREIGN KEY(idDrone)REFERENCES DRONE(idDrone);
+ALTER TABLE LICENCA_VOO   ADD CONSTRAINT idDrone_licenca_fk FOREIGN KEY(idDrone)REFERENCES DRONE(idDrone);
+ALTER TABLE HISTORICO_VOO ADD CONSTRAINT idDrone_voo_fk FOREIGN KEY(idDrone)REFERENCES DRONE(idDrone);

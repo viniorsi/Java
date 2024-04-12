@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e2dafc1d-1693-4c88-8d03-32423959e38d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/Controllers/ODS3Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/DTO/DtoIndicadores.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/DTO/DtoIndicadoresOds3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/DTO/DtoOds3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/DTO/DtoOds3ListaId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/DTO/DtoRegiao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/Entities/Indicadores.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/Entities/ODS3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/Entities/Objetivos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/Entities/Regiao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/Ods3Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/Repositories/IndicadoresRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/Repositories/Ods3Repository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/br/com/fiap/ODS3/Repositories/RegiaoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/db/migration/V1__create-tables-ods3-indices-regiao.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/br/com/fiap/ODS3/Ods3ApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2YYz15hb28ZzXzT41bInSqMPIAS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/User/Desktop/ODS3API/BackEnd/ODS3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Ods3Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ODS3" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.fiap.ODS3.Ods3Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e2dafc1d-1693-4c88-8d03-32423959e38d" name="Changes" comment="" />
+      <created>1700717083818</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700717083818</updated>
+      <workItem from="1700717084768" duration="151000" />
+      <workItem from="1700718035269" duration="2557000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
