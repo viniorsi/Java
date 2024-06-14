@@ -1,5 +1,7 @@
 package med.voll.api.Controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.domain.Paciente.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping( "/pacientes")
+@SecurityRequirement(name = "bearer-key")
 public class PacienteController {
     @Autowired
     private PacienteRepository repository;
@@ -22,6 +25,7 @@ public class PacienteController {
     public ResponseEntity CadastrarPacientes(@RequestBody DadosPaciente dados, UriComponentsBuilder uriBuilder){
             var paciente = new Paciente(dados);
             var uri = uriBuilder.path("/pacientes/{id}").buildAndExpand(paciente.getId()).toUri();
+            repository.save(paciente);
 
             return ResponseEntity.created(uri).body(new DadosDetalhamentoPaciente(paciente));
 

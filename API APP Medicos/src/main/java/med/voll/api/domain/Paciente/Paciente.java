@@ -13,7 +13,7 @@ import med.voll.api.domain.endereco.Endereco;
 @EqualsAndHashCode(of = "id")
 public class Paciente {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nome;
     private String email;
     private String telefone;
@@ -23,6 +23,7 @@ public class Paciente {
     private boolean ativo;
 
     public Paciente(DadosPaciente dados) {
+        this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();

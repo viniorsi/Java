@@ -15,13 +15,13 @@ import med.voll.api.domain.endereco.Endereco;
 @EqualsAndHashCode(of = "id")
 public class Medico {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nome;
     private  String email;
     private String telefone;
     private  String crm;
     @Enumerated(EnumType.STRING)
-    private Espescialidade especialidade;
+    private Especialidade especialidade;
     @Embedded
     private Endereco endereco;
     private boolean ativo;

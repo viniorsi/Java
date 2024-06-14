@@ -26,7 +26,6 @@ public class SecurityConfigurations {
 
     //expondo o objeto para o spring mostrando que estou devolvendo o objeto dele mesmo (SecurityFilterChain)
     @Bean
-
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         // csrf - cross site request forgery, vamos desabilitar esta função de segurança
         // pois o token ja faz essa função de segurnça
@@ -36,6 +35,8 @@ public class SecurityConfigurations {
 //                se vier uma requisição para /login do tipo post é para permitir todas pois ela é publica
                 .and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST,"/login").permitAll()
+                .requestMatchers("/v3/api-docs/**","/swagger-ui.index.html", "/swagger-ui/**").permitAll()
+
 //                qualquer outra requisição precisa ter a autenticação de token
                 .anyRequest().authenticated()
                 //ordem dos filtros a serem chamados, o nosso filtro tem que vir primeiro para autenticar o usuario

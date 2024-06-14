@@ -16,7 +16,8 @@ import java.io.IOException;
 
 // esta classe serve para não deixar que as requisições das controllers sejam chamadas sem servem validadas
 //passa por aqui e se tiver o token ela libera a requisição chamada
-@Component // serve para o spring carregar a classe e ela não tiver um tipo especifico, algo generico
+// serve para o spring carregar a classe e ela não tiver um tipo especifico, algo generico
+@Component
 public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -43,7 +44,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         }
 
-        System.out.println(subjetc);
 
 
         //serve para chamar a cadeia de filtros
@@ -56,7 +56,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         var authorizationHeader = request.getHeader("Authorization");
         if(authorizationHeader != null){
-            return authorizationHeader.replace("Bearer" , "");
+            return authorizationHeader.replace("Bearer " , "");
         }
 
     return null;
