@@ -11,7 +11,7 @@ CREATE TABLE users (
                        zip_code varchar(8),
                        address varchar(150),
                        number varchar(4),
-                       additional_info varchar(5),
+                       additional_info varchar(8),
                        neigborhood varchar(100),
                        state varchar(2),
                        city varchar(30),
