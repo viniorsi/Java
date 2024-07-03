@@ -2,11 +2,9 @@ package com.viniorsi.TravelEase.Domain.User.Entity;
 
 import com.viniorsi.TravelEase.Domain.Address.Entity.Address;
 import com.viniorsi.TravelEase.Domain.User.DTO.DTOUserRegister;
+import com.viniorsi.TravelEase.Domain.User.Enum.Status;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +16,7 @@ import java.util.List;
 @Table(name = "users")
 @Entity(name = "User")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -36,7 +35,7 @@ public class User implements UserDetails {
     private LocalDate creation_date ;
     @Embedded
     private Address address;
-    private Boolean active ;
+    private Status status ;
     private int points;
 
     public User(DTOUserRegister data) {
@@ -49,7 +48,7 @@ public class User implements UserDetails {
         this.birthday = data.birthday();
         this.creation_date = LocalDate.now();
         this.address = new Address(data.address());
-        this.active = true;
+        this.status = Status.PENDENTE;
         this.points = 0;
     }
 
@@ -88,6 +87,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return active;
+        return true;
     }
 }

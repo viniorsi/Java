@@ -15,6 +15,6 @@ CREATE TABLE users (
                        neigborhood varchar(100),
                        state varchar(2),
                        city varchar(30),
-                       active TINYINT(1) DEFAULT 1,
+                       status char(1),
                        points INT
 );

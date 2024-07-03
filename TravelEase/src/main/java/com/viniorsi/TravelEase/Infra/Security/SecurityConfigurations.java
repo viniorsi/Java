@@ -22,7 +22,7 @@ public class SecurityConfigurations {
                 http.csrf(csrf -> csrf.disable())
                         .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests(req -> {
-                            req.requestMatchers("/login/singin","/login/register").permitAll();
+                            req.requestMatchers("/login/**").permitAll();
                             req.anyRequest().authenticated();
                         })
                         .build();

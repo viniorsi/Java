@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class EmailService {
@@ -29,5 +31,7 @@ public class EmailService {
             return "Erro ao tentar enviar email " + e.getLocalizedMessage();
         }
     }
+
+
 
 }
