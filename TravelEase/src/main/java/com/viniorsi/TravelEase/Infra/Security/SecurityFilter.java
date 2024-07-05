@@ -1,6 +1,6 @@
 package com.viniorsi.TravelEase.Infra.Security;
 
-import com.viniorsi.TravelEase.Domain.User.Repository.UserRespository;
+import com.viniorsi.TravelEase.Repository.User.UserRespository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,7 +30,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         if (tokenJWT != null) {
             var subject = tokenService.getSubject(tokenJWT);
             var user = respository.findByCpf(subject);
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, user.get().getAuthorities());
+            var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

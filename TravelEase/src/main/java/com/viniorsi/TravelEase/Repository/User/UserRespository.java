@@ -1,4 +1,4 @@
-package com.viniorsi.TravelEase.Domain.User.Repository;
+package com.viniorsi.TravelEase.Repository.User;
 
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface UserRespository extends JpaRepository<User, Long> {
 
 
-    Optional<User> findByCpf(String cpf);
+    User findByCpf(String cpf);
 
-    Object findByEmail(String email);
+//    Object findByEmail(String email);
 }

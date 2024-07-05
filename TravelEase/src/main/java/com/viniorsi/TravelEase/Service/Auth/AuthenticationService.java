@@ -1,6 +1,6 @@
-package com.viniorsi.TravelEase.Domain.User.Service;
+package com.viniorsi.TravelEase.Service.Auth;
 
-import com.viniorsi.TravelEase.Domain.User.Repository.UserRespository;
+import com.viniorsi.TravelEase.Repository.User.UserRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +16,10 @@ public class AuthenticationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String cpf) throws UsernameNotFoundException {
-        return repository.findByCpf(cpf)
-                .orElseThrow(() -> new UsernameNotFoundException("Dados inválidos"));
+        try{
+            return repository.findByCpf(cpf);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("Dados inválidos");
+        }
     }
 }

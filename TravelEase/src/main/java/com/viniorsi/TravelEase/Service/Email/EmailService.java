@@ -1,4 +1,4 @@
-package com.viniorsi.TravelEase.Domain.User.Service;
+package com.viniorsi.TravelEase.Service.Email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -2,7 +2,7 @@ package com.viniorsi.TravelEase.Domain.User.Entity;
 
 import com.viniorsi.TravelEase.Domain.Address.Entity.Address;
 import com.viniorsi.TravelEase.Domain.User.DTO.DTOUserRegister;
-import com.viniorsi.TravelEase.Domain.User.Enum.Status;
+import com.viniorsi.TravelEase.Domain.User.Enums.StatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,7 +35,8 @@ public class User implements UserDetails {
     private LocalDate creation_date ;
     @Embedded
     private Address address;
-    private Status status ;
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status ;
     private int points;
 
     public User(DTOUserRegister data) {
@@ -48,7 +49,7 @@ public class User implements UserDetails {
         this.birthday = data.birthday();
         this.creation_date = LocalDate.now();
         this.address = new Address(data.address());
-        this.status = Status.PENDENTE;
+        this.status = StatusEnum.P;
         this.points = 0;
     }
 

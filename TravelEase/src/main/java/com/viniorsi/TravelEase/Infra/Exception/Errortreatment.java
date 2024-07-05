@@ -21,16 +21,11 @@ public class Errortreatment {
 
             var erros = e.getFieldErrors();
 
-//     pega um objeto do tipo erros e mapeira para DadosErroValidacao, inicia a variavel e transforma ela em lista
+
             return ResponseEntity.badRequest().body(erros.stream().map(DadosErroValidacao::new).toList());
 
         }
-        @ExceptionHandler(ValidationException.class)
-        public ResponseEntity tratarErroRegraDeNegocio(ValidationException e){
 
-            return ResponseEntity.badRequest().body(e.getMessage());
-
-        }
 
 
 
