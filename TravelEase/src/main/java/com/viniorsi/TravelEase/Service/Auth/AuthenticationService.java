@@ -16,7 +16,7 @@ public class AuthenticationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String cpf) throws UsernameNotFoundException {
-        try{
+        try {
             return repository.findByCpf(cpf);
         } catch (Exception e) {
             throw new UsernameNotFoundException("Dados inválidos");

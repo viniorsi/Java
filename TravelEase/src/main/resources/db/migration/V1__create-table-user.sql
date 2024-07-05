@@ -22,7 +22,7 @@ CREATE TABLE users (
 CREATE TABLE UsersVerification (
                        id bigint PRIMARY KEY AUTO_INCREMENT,
                        user_id bigint unique NOT NULL,
-                       uuid varchar(36) NOT NULL,
+                       verification_code varchar(255) NOT NULL,
                        expiration_date date,
                        FOREIGN KEY (user_id) REFERENCES users(id)
 );

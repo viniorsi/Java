@@ -1,7 +1,7 @@
 package com.viniorsi.TravelEase.Domain.User.DTO;
 
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
-import com.viniorsi.TravelEase.Domain.UserVerification.UserVerification;
+import com.viniorsi.TravelEase.Domain.UserVerification.Entity.UserVerification;
 
 import java.time.LocalDate;
 
@@ -16,7 +16,7 @@ public record DTOUserDetails(
         LocalDate creation_date,
         LocalDate birthday,
         String status,
-        String uuid
+        String verificationCode
 
 ) {
     public DTOUserDetails(User user, UserVerification userVerification) {
@@ -30,7 +30,7 @@ public record DTOUserDetails(
                 user.getCreation_date(),
                 user.getBirthday(),
                 user.getStatus().getDescricao(),
-                userVerification.getUuid());
+                userVerification.getVerificationCode());
     }
 
 

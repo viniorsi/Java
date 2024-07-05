@@ -1,12 +1,14 @@
 package com.viniorsi.TravelEase.Service.Email;
 
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.File;
+import java.util.List;
 
 @Service
 public class EmailService {
@@ -17,21 +19,33 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String remetente;
 
-    public String enviarEmailTexto(String destinatario, String assunto, String mensagem) {
+    public String enviarEmailTexto(String destinatario, String assunto, String mensagemHtml, List<String> caminhosImagens) {
 
         try {
-            SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-            simpleMailMessage.setFrom(remetente);
-            simpleMailMessage.setTo(destinatario);
-            simpleMailMessage.setSubject(assunto);
-            simpleMailMessage.setText(mensagem);
-            javaMailSender.send(simpleMailMessage);
+
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+
+            helper.setFrom(remetente);
+            helper.setTo(destinatario);
+            helper.setSubject(assunto);
+            helper.setText(mensagemHtml, true);
+
+            for (int i = 0; i < caminhosImagens.size(); i++) {
+                String caminhoImagem = caminhosImagens.get(i);
+                File file = new File(caminhoImagem);
+                if (file.exists()) {
+                    helper.addInline("imagemInline" + i, file);
+                } else {
+                    return "Erro ao tentar enviar email: Imagem não encontrada";
+                }
+            }
+
+
+            javaMailSender.send(mimeMessage);
             return "Email enviado";
-        }catch(Exception e) {
-            return "Erro ao tentar enviar email " + e.getLocalizedMessage();
+        } catch (Exception e) {
+            return "Erro ao tentar enviar email: " + e.getLocalizedMessage();
         }
     }
-
-
-
 }
