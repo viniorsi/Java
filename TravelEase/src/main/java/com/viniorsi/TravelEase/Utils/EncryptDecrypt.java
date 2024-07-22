@@ -1,5 +1,6 @@
 package com.viniorsi.TravelEase.Utils;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -21,9 +22,11 @@ public class EncryptDecrypt {
     private static final String SECRET_KEY = "1234567890123456";
 
 
+
     public static SecretKey getSecretKey() {
         return new SecretKeySpec(SECRET_KEY.getBytes(), ALGORITHM);
     }
+
 
     public static String encrypt(String plainText, SecretKey secretKey) throws Exception {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
@@ -31,6 +34,7 @@ public class EncryptDecrypt {
         byte[] encryptedBytes = cipher.doFinal(plainText.getBytes());
         return Base64.getEncoder().encodeToString(encryptedBytes);
     }
+
 
     public static String decrypt(String encryptedText, SecretKey secretKey) throws Exception {
         Cipher cipher = Cipher.getInstance(ALGORITHM);

@@ -2,6 +2,7 @@ package com.viniorsi.TravelEase.Domain.User.DTO;
 
 
 import com.viniorsi.TravelEase.Domain.Address.DTO.DTOAddress;
+import com.viniorsi.TravelEase.Domain.User.Enums.Verificationtype;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -28,7 +29,9 @@ public record DTOUserRegister(
         @NotNull
         LocalDate birthday,
         @NotNull @Valid
-        DTOAddress address
+        DTOAddress address,
+        @NotNull
+        Verificationtype verificationType
 
 
 ) {
