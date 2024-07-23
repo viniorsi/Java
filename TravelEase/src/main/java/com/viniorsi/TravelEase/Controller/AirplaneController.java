@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,10 +23,10 @@ public class AirplaneController {
     AirplaneRepository repository;
 
 
-    @GetMapping()
-    public ResponseEntity<Page<DTOAirplaneSeats>> listSeats(@PageableDefault(size = 10) Pageable pagination) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Page<DTOAirplaneSeats>> listSeats(@PageableDefault(size = 10) Pageable pagination, @PathVariable Long id) {
         try {
-            Page<Airplane> airplanes = repository.findAll(pagination);
+            Page<Airplane> airplanes = repository.findById(id,pagination);
             Page<DTOAirplaneSeats> dtoAirplanes = airplanes.map(DTOAirplaneSeats::new);
             return ResponseEntity.ok(dtoAirplanes);
         } catch (Exception e) {

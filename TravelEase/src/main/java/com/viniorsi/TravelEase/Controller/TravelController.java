@@ -1,6 +1,7 @@
 package com.viniorsi.TravelEase.Controller;
 
 import com.viniorsi.TravelEase.Domain.Destiny.DTO.DTOListDestinations;
+import com.viniorsi.TravelEase.Domain.Ticket.DTO.DTOTicketPerson;
 import com.viniorsi.TravelEase.Domain.Travel.DTO.DTOTravelRequest;
 import com.viniorsi.TravelEase.Service.Destiny.DestinyService;
 import com.viniorsi.TravelEase.Service.Travel.TravelService;

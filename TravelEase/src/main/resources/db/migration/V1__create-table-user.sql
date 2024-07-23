@@ -20,26 +20,6 @@ CREATE TABLE users
     points          INT
 );
 
-INSERT INTO users (Cpf, name, tel, ddd, email, password, birthday, creation_date,
-                   zip_code, address, number, additional_info, neigborhood, state, city, status, points)
-VALUES ('45822502890',
-        'teste',
-        '942262009',
-        '11',
-        'teste@hotmail.com',
-        '777',
-        '1990-01-01',
-        CURRENT_DATE,
-        '01001000',
-        'Rua Exemplo',
-        '123',
-        'Apto 45',
-        'Centro',
-        'SP',
-        'São Paulo',
-        'A', -- status, se necessário
-        0 -- points, se não for especificado
-       );
 
 CREATE TABLE UsersVerification
 (
@@ -137,8 +117,10 @@ VALUES ('AUSTRALIA', 'Descrição da Austrália', 'http://example.com/australia.
        ('SAMOA', 'Descrição de Samoa', 'http://example.com/samoa.jpg', 100.0, 'OCEANIA');
 
 INSERT INTO airplane (model, registration_number, capacity, status, airline, destiny_id)
-VALUES ('Boeing 737', 'N12345', 200, 'A', 'American Airlines', (SELECT id FROM destiny WHERE country = 'ESTADOS_UNIDOS')),
-       ('Airbus A320', 'N54321', 180, 'A', 'United Airlines', (SELECT id FROM destiny WHERE country = 'ESTADOS_UNIDOS'));
+VALUES ('Boeing 737', 'N12345', 200, 'A', 'American Airlines',
+        (SELECT id FROM destiny WHERE country = 'ESTADOS_UNIDOS')),
+       ('Airbus A320', 'N54321', 180, 'A', 'United Airlines',
+        (SELECT id FROM destiny WHERE country = 'ESTADOS_UNIDOS'));
 
 INSERT INTO airplane (model, registration_number, capacity, status, airline, destiny_id)
 VALUES ('Boeing 787', 'C12345', 300, 'A', 'Air Canada', (SELECT id FROM destiny WHERE country = 'CANADA')),
@@ -153,16 +135,20 @@ VALUES ('Boeing 737', 'CU12345', 200, 'A', 'Cubana de Aviación', (SELECT id FRO
        ('Airbus A320', 'CU54321', 180, 'A', 'Cubana de Aviación', (SELECT id FROM destiny WHERE country = 'CUBA'));
 
 INSERT INTO airplane (model, registration_number, capacity, status, airline, destiny_id)
-VALUES ('Boeing 737', 'RD12345', 200, 'A', 'Pawa Dominicana', (SELECT id FROM destiny WHERE country = 'REPUBLICA_DOMINICANA')),
-       ('Airbus A320', 'RD54321', 180, 'A', 'Pawa Dominicana', (SELECT id FROM destiny WHERE country = 'REPUBLICA_DOMINICANA'));
+VALUES ('Boeing 737', 'RD12345', 200, 'A', 'Pawa Dominicana',
+        (SELECT id FROM destiny WHERE country = 'REPUBLICA_DOMINICANA')),
+       ('Airbus A320', 'RD54321', 180, 'A', 'Pawa Dominicana',
+        (SELECT id FROM destiny WHERE country = 'REPUBLICA_DOMINICANA'));
 
 INSERT INTO airplane (model, registration_number, capacity, status, airline, destiny_id)
 VALUES ('Boeing 737', 'BR12345', 200, 'A', 'LATAM Airlines', (SELECT id FROM destiny WHERE country = 'BRASIL')),
        ('Airbus A320', 'BR54321', 180, 'A', 'GOL Airlines', (SELECT id FROM destiny WHERE country = 'BRASIL'));
 
 INSERT INTO airplane (model, registration_number, capacity, status, airline, destiny_id)
-VALUES ('Boeing 737', 'AR12345', 200, 'A', 'Aerolineas Argentinas', (SELECT id FROM destiny WHERE country = 'ARGENTINA')),
-       ('Airbus A320', 'AR54321', 180, 'A', 'Austral Líneas Aéreas', (SELECT id FROM destiny WHERE country = 'ARGENTINA'));
+VALUES ('Boeing 737', 'AR12345', 200, 'A', 'Aerolineas Argentinas',
+        (SELECT id FROM destiny WHERE country = 'ARGENTINA')),
+       ('Airbus A320', 'AR54321', 180, 'A', 'Austral Líneas Aéreas',
+        (SELECT id FROM destiny WHERE country = 'ARGENTINA'));
 
 INSERT INTO airplane (model, registration_number, capacity, status, airline, destiny_id)
 VALUES ('Boeing 737', 'CO12345', 200, 'A', 'Avianca', (SELECT id FROM destiny WHERE country = 'COLOMBIA')),
@@ -175,6 +161,246 @@ VALUES ('Boeing 737', 'CH12345', 200, 'A', 'LATAM Airlines', (SELECT id FROM des
 INSERT INTO airplane (model, registration_number, capacity, status, airline, destiny_id)
 VALUES ('Boeing 737', 'PE12345', 200, 'A', 'LATAM Airlines', (SELECT id FROM destiny WHERE country = 'PERU')),
        ('Airbus A320', 'PE54321', 180, 'A', 'Viva Air Peru', (SELECT id FROM destiny WHERE country = 'PERU'));
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'N54321'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'C54321'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'M54321'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CU54321'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'RD54321'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'BR54321'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'AR54321'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CO54321'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'CH54321'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE12345'), '4A', 'L');
+
+INSERT INTO seat (airplane_id, seat_number, status)
+VALUES ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '1A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '1B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '1C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '2A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '2B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '2C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '3A', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '3B', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '3C', 'L'),
+       ((SELECT id FROM airplane WHERE registration_number = 'PE54321'), '4A', 'L');
 
 
 CREATE TABLE hotels
@@ -277,6 +503,20 @@ VALUES ('Sydney Opera Hotel', 'Hotel luxuoso em Sydney', 'Hotel', 210.00, 'Nenhu
        ('Papua New Guinea Paradise', 'Resort de luxo em Papua-Nova Guiné', 'Resort', 180.00, 'Nenhuma', true, 29),
        ('Samoa Island Hotel', 'Hotel de ilha em Samoa', 'Hotel', 170.00, 'Nenhuma', false, 30);
 
+CREATE TABLE TICKETS
+(
+    id            bigint AUTO_INCREMENT PRIMARY KEY,
+    user_id       bigint,
+    travel_id     bigint,
+    seat_id       bigint,
+    Cpf           varchar(11)        NOT NULL,
+    name          varchar(100)       NOT NULL,
+    birthday      date,
+    Qrcode        varchar(30) UNIQUE NOT NULL,
+    emission_date date               NOT NULL,
+    status        char(1)            NOT NULL,
+    usage_date    date
+);
 
 
 INSERT INTO html_templates (name, content)

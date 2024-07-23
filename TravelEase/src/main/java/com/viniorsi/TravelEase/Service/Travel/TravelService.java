@@ -4,6 +4,7 @@ import com.viniorsi.TravelEase.Domain.Destiny.Entity.Destiny;
 import com.viniorsi.TravelEase.Domain.Destiny.Repository.DestinyRepository;
 import com.viniorsi.TravelEase.Domain.Hotels.Entity.Hotels;
 import com.viniorsi.TravelEase.Domain.Hotels.Repository.HotelsRepository;
+import com.viniorsi.TravelEase.Domain.Ticket.DTO.DTOTicketPerson;
 import com.viniorsi.TravelEase.Domain.Transactional.Entity.Transactional;
 import com.viniorsi.TravelEase.Domain.Transactional.Repository.TransactionalRepository;
 import com.viniorsi.TravelEase.Domain.Travel.DTO.DTOTravelRequest;
@@ -16,10 +17,12 @@ import com.viniorsi.TravelEase.Domain.TravelHotels.Entity.TravelHotels;
 import com.viniorsi.TravelEase.Domain.TravelHotels.Repository.TravelHotelsRepository;
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import com.viniorsi.TravelEase.Repository.User.UserRespository;
+import com.viniorsi.TravelEase.Service.Transactional.TransactionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Service
 public class TravelService {
@@ -40,7 +43,7 @@ public class TravelService {
     TravelHotelsRepository travelHotelsRepository;
 
     @Autowired
-    TransactionalRepository transactionalRepository;
+    TransactionalService transactionalService;
 
 
 
@@ -55,13 +58,14 @@ public class TravelService {
         int points;
         TravelHotels travelHotels;
         Travel travel;
-        Transactional transactional;
+        Transactional transaction;
 
 
         value = (hotels != null)
-                ? getPriceWithHotel(dtoTravelRequest, destiny.getDaily_value(), hotels)
-                : getPriceWithoutHotel(dtoTravelRequest, destiny.getDaily_value());
-        points = generatePoints(value);
+                ? transactionalService.getPriceWithHotel(dtoTravelRequest, destiny.getDaily_value(), hotels)
+                : transactionalService.getPriceWithoutHotel(dtoTravelRequest, destiny.getDaily_value());
+
+        points = transactionalService.generatePoints(value);
         travel = new Travel(user, destiny, dtoTravelRequest);
 
         if (hotels == null) {
@@ -70,17 +74,18 @@ public class TravelService {
             if (travel.getId() == null) {
                 throw new RuntimeException("Travel ID was not generated");
             }
-            transactional = new Transactional(user, value, points,travel);
-            transactionalRepository.save(transactional);
-            return new DTOTravelResponseWithoutHotel(travel, transactional);
+
+            transaction = new Transactional(user, value, points,travel);
+            transactionalService.addTransaction(transaction,dtoTravelRequest);
+            return new DTOTravelResponseWithoutHotel(travel, transaction);
         }
 
         try {
             travelRepository.save(travel);
-            transactional = new Transactional(user, value, points,travel);
-            transactionalRepository.save(transactional);
+            transaction = new Transactional(user, value, points,travel);
+            transactionalService.addTransaction(transaction,dtoTravelRequest);
             travelHotels = associateHotelToTravel(travel.getId(), dtoTravelRequest, hotels);
-            return new DTOTravelResponseWithHotel(travelHotels, travel, transactional);
+            return new DTOTravelResponseWithHotel(travelHotels, travel, transaction);
         } catch (Exception e) {
 
             throw new RuntimeException("Erro ao associar hotel a viagem" + e.getMessage());
@@ -88,41 +93,7 @@ public class TravelService {
 
     }
 
-    private int generatePoints(Double value) {
-        value = value * 0.2;
-        return value.intValue();
-    }
 
-    public Double getPriceWithHotel(DTOTravelRequest travelRequest, Double dailyValueDestiny, Hotels hotel) {
-
-        var Days = ChronoUnit.DAYS.between(travelRequest.departureDate(), travelRequest.returnDate());
-        var value = (dailyValueDestiny * Days) + hotel.getValue() * travelRequest.adults_count();
-        if (travelRequest.pet() > 0) {
-            value += hotel.getValue() * travelRequest.pet() * 3;
-        }
-        if (travelRequest.kids_count() >= 2) {
-            value += (hotel.getValue() * travelRequest.kids_count()) / 2;
-        }
-        if (travelRequest.isRoundTrip()) {
-            value -= -value * 0.1;
-        }
-        return value;
-
-    }
-
-    public Double getPriceWithoutHotel(DTOTravelRequest travelRequest, Double dailyValueDestiny) {
-
-        var Days = ChronoUnit.DAYS.between(travelRequest.departureDate(), travelRequest.returnDate());
-        var value = (dailyValueDestiny * Days) * travelRequest.ticketscount();
-        if (travelRequest.pet() > 0) {
-            value += 100 * travelRequest.pet();
-        }
-        if (travelRequest.isRoundTrip()) {
-            value -= value * 0.1;
-        }
-        return value;
-
-    }
 
     public TravelHotels associateHotelToTravel(Long travelId, DTOTravelRequest travelRequest, Hotels hotel) {
         Travel travel = travelRepository.findById(travelId).orElseThrow(() -> new RuntimeException("Travel not found"));
