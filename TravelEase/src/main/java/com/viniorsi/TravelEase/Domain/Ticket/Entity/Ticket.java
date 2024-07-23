@@ -7,6 +7,7 @@ import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Table(name = "Ticket")
@@ -28,14 +29,15 @@ public class Ticket {
 
     private String name;
     private String cpf;
-    private LocalDateTime birthday;
+    private LocalDate birthday;
     @ManyToOne
     @JoinColumn(name = "travel_id", referencedColumnName = "id")
     private Travel travel_id;
     @OneToOne
     @JoinColumn(name = "seat_id", referencedColumnName = "id")
     private Seat seat_id;
-    private String Qrcode;
+    private String qrcode;
+    private String qrcodeHash;
     private LocalDateTime emission_date;
     @Enumerated(EnumType.STRING)
     private StatusTicketUsageEnum status;
@@ -43,16 +45,16 @@ public class Ticket {
 
 
     public Ticket(User user_id, String name,
-                  String cpf, LocalDateTime birthday, Travel travel_id,
-                  Seat seat_id, String qrcode,
-                  StatusTicketUsageEnum status, LocalDateTime usage_date) {
+                  String cpf, LocalDate birthday, Travel travel_id,
+                  Seat seat_id, String qrcode, String qrcodeHash) {
         this.user_id = user_id;
         this.name = name;
         this.cpf = cpf;
         this.birthday = birthday;
         this.travel_id = travel_id;
         this.seat_id = seat_id;
-        Qrcode = qrcode;
+        this.qrcode = qrcode;
+        this.qrcodeHash = qrcodeHash;
         this.emission_date = LocalDateTime.now();
         this.status = StatusTicketUsageEnum.P;
         this.usage_date = null;

@@ -4,6 +4,8 @@ import com.viniorsi.TravelEase.Domain.Hotels.Entity.Hotels;
 import com.viniorsi.TravelEase.Domain.Transactional.Entity.Transactional;
 import com.viniorsi.TravelEase.Domain.Transactional.Repository.TransactionalRepository;
 import com.viniorsi.TravelEase.Domain.Travel.DTO.DTOTravelRequest;
+import com.viniorsi.TravelEase.Domain.Travel.Entity.Travel;
+import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import com.viniorsi.TravelEase.Service.Ticket.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +21,11 @@ public class TransactionalService {
     @Autowired
     TicketService ticketService;
 
-    public void addTransaction(Transactional transaction,DTOTravelRequest dtoTravelRequest){
+    public void addTransaction(Transactional transaction, DTOTravelRequest dtoTravelRequest, User user, Travel travel){
 
         transactionalRepository.save(transaction);
 
-        ticketService.ticketCreation(dtoTravelRequest);
+        ticketService.ticketCreation(dtoTravelRequest,user,travel);
 
     }
 

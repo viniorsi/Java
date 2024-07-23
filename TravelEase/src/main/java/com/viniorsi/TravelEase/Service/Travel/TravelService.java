@@ -76,14 +76,14 @@ public class TravelService {
             }
 
             transaction = new Transactional(user, value, points,travel);
-            transactionalService.addTransaction(transaction,dtoTravelRequest);
+            transactionalService.addTransaction(transaction,dtoTravelRequest,user,travel);
             return new DTOTravelResponseWithoutHotel(travel, transaction);
         }
 
         try {
             travelRepository.save(travel);
             transaction = new Transactional(user, value, points,travel);
-            transactionalService.addTransaction(transaction,dtoTravelRequest);
+            transactionalService.addTransaction(transaction,dtoTravelRequest,user,travel);
             travelHotels = associateHotelToTravel(travel.getId(), dtoTravelRequest, hotels);
             return new DTOTravelResponseWithHotel(travelHotels, travel, transaction);
         } catch (Exception e) {

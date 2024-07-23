@@ -503,7 +503,7 @@ VALUES ('Sydney Opera Hotel', 'Hotel luxuoso em Sydney', 'Hotel', 210.00, 'Nenhu
        ('Papua New Guinea Paradise', 'Resort de luxo em Papua-Nova Guiné', 'Resort', 180.00, 'Nenhuma', true, 29),
        ('Samoa Island Hotel', 'Hotel de ilha em Samoa', 'Hotel', 170.00, 'Nenhuma', false, 30);
 
-CREATE TABLE TICKETS
+CREATE TABLE TICKET
 (
     id            bigint AUTO_INCREMENT PRIMARY KEY,
     user_id       bigint,
@@ -512,7 +512,8 @@ CREATE TABLE TICKETS
     Cpf           varchar(11)        NOT NULL,
     name          varchar(100)       NOT NULL,
     birthday      date,
-    Qrcode        varchar(30) UNIQUE NOT NULL,
+    Qrcode        TEXT               NOT NULL,
+    qrcode_hash    VARCHAR(64)        NOT NULL UNIQUE,
     emission_date date               NOT NULL,
     status        char(1)            NOT NULL,
     usage_date    date

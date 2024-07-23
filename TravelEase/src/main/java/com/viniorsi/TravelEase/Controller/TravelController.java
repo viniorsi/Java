@@ -30,7 +30,7 @@ public class TravelController {
             var response = travelService.addTravel(dtoTravelRequest);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
 
     }
