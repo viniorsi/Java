@@ -30,7 +30,7 @@ public class AirplaneController {
             Page<DTOAirplaneSeats> dtoAirplanes = airplanes.map(DTOAirplaneSeats::new);
             return ResponseEntity.ok(dtoAirplanes);
         } catch (Exception e) {
-            e.printStackTrace(); // Log the exception or use a logger
+
             return ResponseEntity.badRequest().body(null);
         }
     }

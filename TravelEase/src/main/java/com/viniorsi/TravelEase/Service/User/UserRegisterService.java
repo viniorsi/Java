@@ -11,6 +11,7 @@ import com.viniorsi.TravelEase.Repository.User.UserRespository;
 import com.viniorsi.TravelEase.Repository.UserVerification.UserVerificationRepository;
 import com.viniorsi.TravelEase.Service.Email.EmailPublisher;
 import com.viniorsi.TravelEase.Service.SMS.SMSService;
+import com.viniorsi.TravelEase.Service.Transactional.StripeService;
 import com.viniorsi.TravelEase.Service.html.HtmlTemplateService;
 import com.viniorsi.TravelEase.Utils.EncryptDecrypt;
 import jakarta.validation.Valid;
@@ -35,6 +36,8 @@ public class UserRegisterService {
     private EmailPublisher emailPublisher;
     @Autowired
     private SMSService smsService;
+    @Autowired
+    private StripeService stripeService;
 
     public DTOUserDetails createUser(@Valid DTOUserRegister userData) throws Exception {
         var user = new User(userData);
@@ -57,6 +60,7 @@ public class UserRegisterService {
                 smsService.sendSMS(destinationNumber, "Seu codigo de verificação é: " + userVerification.getVerificationCode());
             }
 
+            stripeService.createCustomer(user.getEmail(),user.getName());
             userRepository.save(user);
             userVerification.setVerificationCode(EncryptDecrypt.encrypt(userVerification.getVerificationCode(), secret));
             userVerificationRepository.save(userVerification);
