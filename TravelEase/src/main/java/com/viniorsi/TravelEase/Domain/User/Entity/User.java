@@ -25,6 +25,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id  ;
+    private String id_customer_stripe;
     private String cpf ;
     private String name ;
     private String tel ;

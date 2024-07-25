@@ -1,6 +1,7 @@
 CREATE TABLE users
 (
     id              bigint PRIMARY KEY AUTO_INCREMENT,
+    id_Customer_Stripe varchar(20) NOT NULL,
     Cpf             varchar(11) UNIQUE NOT NULL,
     name            varchar(100)       NOT NULL,
     tel             varchar(9),

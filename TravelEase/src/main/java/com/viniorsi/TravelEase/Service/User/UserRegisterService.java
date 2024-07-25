@@ -1,5 +1,6 @@
 package com.viniorsi.TravelEase.Service.User;
 
+import com.stripe.model.Customer;
 import com.viniorsi.TravelEase.Domain.Email.EmailMessage;
 import com.viniorsi.TravelEase.Domain.User.DTO.DTOUserDetails;
 import com.viniorsi.TravelEase.Domain.User.DTO.DTOUserRegister;
@@ -60,7 +61,8 @@ public class UserRegisterService {
                 smsService.sendSMS(destinationNumber, "Seu codigo de verificação é: " + userVerification.getVerificationCode());
             }
 
-            stripeService.createCustomer(user.getEmail(),user.getName());
+            Customer customer = stripeService.createCustomer(user.getEmail(),user.getName());
+            user.setId_customer_stripe(customer.getId());
             userRepository.save(user);
             userVerification.setVerificationCode(EncryptDecrypt.encrypt(userVerification.getVerificationCode(), secret));
             userVerificationRepository.save(userVerification);
