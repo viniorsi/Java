@@ -1,8 +1,7 @@
 package com.viniorsi.TravelEase.Domain.Travel.DTO;
 
-import com.viniorsi.TravelEase.Domain.Transactional.Entity.Transactional;
+import com.viniorsi.TravelEase.Domain.Transaction.Entity.Transaction;
 import com.viniorsi.TravelEase.Domain.Travel.Entity.Travel;
-import com.viniorsi.TravelEase.Domain.TravelHotels.Entity.TravelHotels;
 
 import java.time.LocalDateTime;
 
@@ -16,11 +15,12 @@ public record DTOTravelResponseWithoutHotel(
         int ticketCount,
         int points,
         double value,
-        Long transactional_id
+        Long transactional_id,
+        String stripe_transaction_id
 
 ) implements DTOTravelResponse{
 
-    public DTOTravelResponseWithoutHotel(Travel travel, Transactional transactional) {
+    public DTOTravelResponseWithoutHotel(Travel travel, Transaction transaction) {
         this(travel.getUser().getCpf(),
                 travel.getDestiny().getCountry().getName(),
                 travel.getDepartureLocation().getName(),
@@ -28,9 +28,12 @@ public record DTOTravelResponseWithoutHotel(
                 travel.getReturn_date(),
                 travel.isRoundTrip(),
                 travel.getTicketsCount(),
-                transactional.getPoints(),
-                transactional.getValue(),
-                transactional.getId());
+                transaction.getPoints(),
+                transaction.getValue(),
+                transaction.getId(),
+                transaction.getStripe_transaction_id()
+        );
+
     }
 
 

@@ -1,7 +1,7 @@
-package com.viniorsi.TravelEase.Domain.Transactional.Entity;
+package com.viniorsi.TravelEase.Domain.Transaction.Entity;
 
 
-import com.viniorsi.TravelEase.Domain.Transactional.Enums.StatusPaymentEnum;
+import com.viniorsi.TravelEase.Domain.Transaction.Enums.StatusPaymentEnum;
 import com.viniorsi.TravelEase.Domain.Travel.Entity.Travel;
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import jakarta.persistence.*;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Transactional {
+public class Transaction {
 
 
     @Id
@@ -31,6 +31,8 @@ public class Transactional {
     @JoinColumn(name = "travel_id", referencedColumnName = "id")
     private Travel travel;
 
+    private String stripe_transaction_id;
+
     private int points;
     private double value;
     private LocalDateTime transactionDate;
@@ -39,12 +41,11 @@ public class Transactional {
     private StatusPaymentEnum statusPayment;
 
 
-    public Transactional(User user, Double value, int points,Travel travel) {
+    public Transaction(User user, Double value, int points, Travel travel) {
         this.user = user;
         this.travel = travel;
         this.value = value;
         this.points = points;
-        this.transactionDate = LocalDateTime.now();
         this.paymentDeadLine = LocalDateTime.now().plusDays(3);
         this.statusPayment = StatusPaymentEnum.A;
     }

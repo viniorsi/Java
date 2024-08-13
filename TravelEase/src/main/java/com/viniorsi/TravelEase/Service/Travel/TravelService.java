@@ -1,12 +1,11 @@
 package com.viniorsi.TravelEase.Service.Travel;
 
+import com.stripe.exception.StripeException;
 import com.viniorsi.TravelEase.Domain.Destiny.Entity.Destiny;
 import com.viniorsi.TravelEase.Domain.Destiny.Repository.DestinyRepository;
 import com.viniorsi.TravelEase.Domain.Hotels.Entity.Hotels;
 import com.viniorsi.TravelEase.Domain.Hotels.Repository.HotelsRepository;
-import com.viniorsi.TravelEase.Domain.Ticket.DTO.DTOTicketPerson;
-import com.viniorsi.TravelEase.Domain.Transactional.Entity.Transactional;
-import com.viniorsi.TravelEase.Domain.Transactional.Repository.TransactionalRepository;
+import com.viniorsi.TravelEase.Domain.Transaction.Entity.Transaction;
 import com.viniorsi.TravelEase.Domain.Travel.DTO.DTOTravelRequest;
 import com.viniorsi.TravelEase.Domain.Travel.DTO.DTOTravelResponse;
 import com.viniorsi.TravelEase.Domain.Travel.DTO.DTOTravelResponseWithHotel;
@@ -20,9 +19,6 @@ import com.viniorsi.TravelEase.Repository.User.UserRespository;
 import com.viniorsi.TravelEase.Service.Transactional.TransactionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 @Service
 public class TravelService {
@@ -47,7 +43,7 @@ public class TravelService {
 
 
 
-    public DTOTravelResponse addTravel(DTOTravelRequest dtoTravelRequest) {
+    public DTOTravelResponse addTravel(DTOTravelRequest dtoTravelRequest) throws StripeException {
 
         User user = (userRespository.getReferenceByCpf(dtoTravelRequest.cpfUser()));
         Destiny destiny = destinyRepository.findById(dtoTravelRequest.destiny_id())
@@ -58,7 +54,7 @@ public class TravelService {
         int points;
         TravelHotels travelHotels;
         Travel travel;
-        Transactional transaction;
+        Transaction transaction;
 
 
         value = (hotels != null)
@@ -75,14 +71,14 @@ public class TravelService {
                 throw new RuntimeException("Travel ID was not generated");
             }
 
-            transaction = new Transactional(user, value, points,travel);
+            transaction = new Transaction(user, value, points,travel);
             transactionalService.addTransaction(transaction,dtoTravelRequest,user,travel);
             return new DTOTravelResponseWithoutHotel(travel, transaction);
         }
 
         try {
             travelRepository.save(travel);
-            transaction = new Transactional(user, value, points,travel);
+            transaction = new Transaction(user, value, points,travel);
             transactionalService.addTransaction(transaction,dtoTravelRequest,user,travel);
             travelHotels = associateHotelToTravel(travel.getId(), dtoTravelRequest, hotels);
             return new DTOTravelResponseWithHotel(travelHotels, travel, transaction);

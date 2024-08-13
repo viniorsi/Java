@@ -1,24 +1,24 @@
 CREATE TABLE users
 (
-    id              bigint PRIMARY KEY AUTO_INCREMENT,
-    id_Customer_Stripe varchar(20) NOT NULL,
-    Cpf             varchar(11) UNIQUE NOT NULL,
-    name            varchar(100)       NOT NULL,
-    tel             varchar(9),
-    ddd             varchar(2),
-    email           varchar(30)        NOT NULL,
-    password        varchar(255),
-    birthday        date,
-    creation_date   date,
-    zip_code        varchar(8),
-    address         varchar(150),
-    number          varchar(4),
-    additional_info varchar(8),
-    neigborhood     varchar(100),
-    state           varchar(2),
-    city            varchar(30),
-    status          char(1),
-    points          INT
+    id                 bigint PRIMARY KEY AUTO_INCREMENT,
+    id_Customer_Stripe varchar(20)        NOT NULL,
+    Cpf                varchar(11) UNIQUE NOT NULL,
+    name               varchar(100)       NOT NULL,
+    tel                varchar(9),
+    ddd                varchar(2),
+    email              varchar(30)        NOT NULL,
+    password           varchar(255),
+    birthday           date,
+    creation_date      date,
+    zip_code           varchar(8),
+    address            varchar(150),
+    number             varchar(4),
+    additional_info    varchar(8),
+    neigborhood        varchar(100),
+    state              varchar(2),
+    city               varchar(30),
+    status             char(1),
+    points             INT
 );
 
 
@@ -448,14 +448,15 @@ CREATE TABLE travel_hotels
 );
 CREATE TABLE Transactional
 (
-    id                bigint AUTO_INCREMENT PRIMARY KEY,
-    user_id           bigint         NOT NULL,
-    travel_id         bigint         NOT NULL,
-    points            INT            NOT NULL,
-    value             decimal(10, 2) NOT NULL,
-    transaction_date  DATETIME       NOT NULL,
-    payment_dead_line DATETIME       NOT NULL,
-    status_payment    char(1)        NOT NULL,
+    id                    bigint AUTO_INCREMENT PRIMARY KEY,
+    user_id               bigint         NOT NULL,
+    travel_id             bigint         NOT NULL,
+    stripe_transaction_id varchar(255)   NOT NULL,
+    points                INT            NOT NULL,
+    value                 decimal(10, 2) NOT NULL,
+    transaction_date      DATETIME,
+    payment_dead_line     DATETIME       NOT NULL,
+    status_payment        char(1)        NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (travel_id) REFERENCES travels (id)
 );
@@ -510,13 +511,13 @@ CREATE TABLE TICKET
     user_id       bigint,
     travel_id     bigint,
     seat_id       bigint,
-    Cpf           varchar(11)        NOT NULL,
-    name          varchar(100)       NOT NULL,
+    Cpf           varchar(11)  NOT NULL,
+    name          varchar(100) NOT NULL,
     birthday      date,
-    Qrcode        TEXT               NOT NULL,
-    qrcode_hash    VARCHAR(64)        NOT NULL UNIQUE,
-    emission_date date               NOT NULL,
-    status        char(1)            NOT NULL,
+    Qrcode        TEXT         NOT NULL,
+    qrcode_hash   VARCHAR(64)  NOT NULL UNIQUE,
+    emission_date date         NOT NULL,
+    status        char(1)      NOT NULL,
     usage_date    date
 );
 

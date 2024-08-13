@@ -2,23 +2,27 @@ package com.viniorsi.TravelEase.Controller;
 
 import com.stripe.exception.StripeException;
 import com.stripe.model.Customer;
+import com.viniorsi.TravelEase.Domain.Transaction.DTO.DTOPaymentDetails;
+import com.viniorsi.TravelEase.Domain.Transaction.DTO.PaymentIntentDTO;
+import com.viniorsi.TravelEase.Domain.Transaction.Entity.Transaction;
 import com.viniorsi.TravelEase.Domain.User.DTO.DTOADDCard;
 import com.viniorsi.TravelEase.Domain.User.DTO.DTOCustumer;
-import com.viniorsi.TravelEase.Domain.UserVerification.DTO.DTOUserVerificationStatus;
 import com.viniorsi.TravelEase.Service.Transactional.StripeService;
+import com.viniorsi.TravelEase.Service.Transactional.TransactionalService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/stripe")
+@RequestMapping("/transactions")
 @SecurityRequirement(name = "bearer-key")
-public class StripeController {
+public class TransactionsController {
 
+    @Autowired
+    private TransactionalService transactionalService;
 
     @Autowired
     private StripeService stripeService;
@@ -48,6 +52,20 @@ public class StripeController {
             return ResponseEntity.ok(new DTOCustumer(customer));
         }
     }
+
+    @PostMapping("/paytransaction")
+    public ResponseEntity paytransaction(@RequestBody PaymentIntentDTO paymentIntentDTO) throws StripeException {
+
+        try {
+       Transaction transaction =  transactionalService.payTransaction(paymentIntentDTO);
+        return ResponseEntity.ok(new DTOPaymentDetails(transaction));
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+    }
+
+
 
 }
 

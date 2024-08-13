@@ -5,6 +5,7 @@ import com.viniorsi.TravelEase.Domain.Airplane.Seat.Entity.Seat;
 import com.viniorsi.TravelEase.Domain.Airplane.Seat.Repository.SeatRepository;
 import com.viniorsi.TravelEase.Domain.Ticket.DTO.DTOTicketPerson;
 import com.viniorsi.TravelEase.Domain.Ticket.Entity.Ticket;
+import com.viniorsi.TravelEase.Domain.Ticket.Enums.StatusTicketUsageEnum;
 import com.viniorsi.TravelEase.Domain.Ticket.TicketRepository;
 import com.viniorsi.TravelEase.Domain.Travel.DTO.DTOTravelRequest;
 import com.viniorsi.TravelEase.Domain.Travel.Entity.Travel;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,9 +30,11 @@ public class TicketService {
     TicketRepository ticketRepository;
 
 
-    public void ticketCreation(DTOTravelRequest dtoTravelRequest, User user, Travel travel){
+    public List<Ticket> ticketCreation(DTOTravelRequest dtoTravelRequest, User user, Travel travel){
 
         Ticket ticket;
+
+        List<Ticket> createdTickets = new ArrayList<>();
 
      List<DTOTicketPerson> ticketsList = dtoTravelRequest.ticketsList();
 
@@ -51,10 +55,24 @@ public class TicketService {
         ticket = new Ticket(user,tickets.name(),tickets.cpf(),tickets.birthday(),travel,seat,qrcode,qrcodeHash);
 
         ticketRepository.save(ticket);
+         createdTickets.add(ticket);
+
 
      }
+        return createdTickets;
+    }
+
+    public void setStatusToActive(List<Ticket> tickets){
+
+        for(Ticket ticket : tickets){
+            ticket.setStatus(StatusTicketUsageEnum.A);
+            ticketRepository.save(ticket);
+
+        }
 
     }
+
+
 
 
 }

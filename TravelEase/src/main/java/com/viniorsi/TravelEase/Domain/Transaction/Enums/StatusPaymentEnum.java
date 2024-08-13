@@ -1,4 +1,4 @@
-package com.viniorsi.TravelEase.Domain.Transactional.Enums;
+package com.viniorsi.TravelEase.Domain.Transaction.Enums;
 
 public enum StatusPaymentEnum {
 

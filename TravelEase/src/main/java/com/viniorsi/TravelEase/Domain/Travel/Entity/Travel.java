@@ -3,9 +3,7 @@ package com.viniorsi.TravelEase.Domain.Travel.Entity;
 
 import com.viniorsi.TravelEase.Domain.Destiny.Entity.Destiny;
 import com.viniorsi.TravelEase.Domain.Destiny.Enums.CountriesEnum;
-import com.viniorsi.TravelEase.Domain.Transactional.Entity.Transactional;
 import com.viniorsi.TravelEase.Domain.Travel.DTO.DTOTravelRequest;
-import com.viniorsi.TravelEase.Domain.Transactional.Enums.StatusPaymentEnum;
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import jakarta.persistence.*;
 import lombok.*;

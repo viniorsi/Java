@@ -1,12 +1,12 @@
 package com.viniorsi.TravelEase.Domain.Travel.DTO;
 
-import com.viniorsi.TravelEase.Domain.Transactional.Entity.Transactional;
+import com.viniorsi.TravelEase.Domain.Transaction.Entity.Transaction;
 import com.viniorsi.TravelEase.Domain.Travel.Entity.Travel;
 import com.viniorsi.TravelEase.Domain.TravelHotels.Entity.TravelHotels;
 
 import java.time.LocalDateTime;
 
-public record DTOTravelResponseWithHotel  (
+public record DTOTravelResponseWithHotel(
         String cpf,
         String destinationName,
         String departureLocation,
@@ -20,11 +20,12 @@ public record DTOTravelResponseWithHotel  (
         int adultCount,
         int childCount,
         boolean pet,
-        Long transactional_id
-)implements DTOTravelResponse{
+        Long transactional_id,
+        String stripe_transaction_id
+) implements DTOTravelResponse {
 
 
-    public DTOTravelResponseWithHotel(TravelHotels travelHotels, Travel travel, Transactional transactional) {
+    public DTOTravelResponseWithHotel(TravelHotels travelHotels, Travel travel, Transaction transaction) {
         this(travel.getUser().getCpf(),
                 travel.getDestiny().getCountry().getName(),
                 travel.getDepartureLocation().getName(),
@@ -32,12 +33,13 @@ public record DTOTravelResponseWithHotel  (
                 travel.getReturn_date(),
                 travel.isRoundTrip(),
                 travel.getTicketsCount(),
-                transactional.getPoints(),
-                transactional.getValue(),
+                transaction.getPoints(),
+                transaction.getValue(),
                 travelHotels.getHotels().getName(),
                 travelHotels.getAdult_count(),
                 travelHotels.getKids_count(),
                 travelHotels.getHotels().isPet(),
-                transactional.getId());
+                transaction.getId(),
+                transaction.getStripe_transaction_id());
     }
 }
