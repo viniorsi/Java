@@ -530,7 +530,7 @@ CREATE TABLE Feedback
     destiny_id bigint NOT NULL,
     rating bigint(1) NOT NULL,
     rating_text TEXT ,
-    date DATE,
+    feedback_date DATE NOT NULL,
     FOREIGN KEY (destiny_id) REFERENCES destiny (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
 

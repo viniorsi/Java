@@ -3,7 +3,7 @@ package com.viniorsi.TravelEase.Controller;
 
 import com.viniorsi.TravelEase.Domain.Destiny.DTO.DTOListDestinations;
 import com.viniorsi.TravelEase.Domain.Feedback.DTO.DTOGiveFeedback;
-import com.viniorsi.TravelEase.Domain.Feedback.Entity.Feedback;
+import com.viniorsi.TravelEase.Domain.Feedback.DTO.DTOfeedbackDetails;
 import com.viniorsi.TravelEase.Service.Destiny.DestinyService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +32,21 @@ public class DestinyController {
     }
 
     @PostMapping("/feedback")
-    public ResponseEntity<Feedback> giveDestinyFeedback(
+    public ResponseEntity<DTOfeedbackDetails> giveDestinyFeedback(
            @RequestBody DTOGiveFeedback dtoGiveFeedback
     ){
 
         try {
-            var page = destinyService.giveDestinyFeedback(dtoGiveFeedback);
-            return ResponseEntity.ok(null);
+            var feedback = destinyService.giveDestinyFeedback(dtoGiveFeedback);
+            return ResponseEntity.ok(feedback);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+    @GetMapping("/{id}/feedbacks")
+    public Page<DTOfeedbackDetails> listFeedbacks(@PathVariable Long id, Pageable pagination) {
+        return destinyService.destinationFeedbacksList(id, pagination);
     }
 
 

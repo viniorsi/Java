@@ -5,10 +5,11 @@ import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
 
-@Table(name = "Ticket")
-@Entity(name = "Ticket")
+@Table(name = "Feedback")
+@Entity(name = "Feedback")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,18 +26,18 @@ public class Feedback {
 
     @ManyToOne
     @JoinColumn(name = "destiny_id", referencedColumnName = "id")
-    private Destiny destiny_id;
+    private Destiny destiny;
 
     private int rating;
     private String rating_text;
-    private LocalDate FeedBackDate;
+    private LocalDate FeedbackDate;
 
 
-    public Feedback(Long id, User user_id, Destiny destiny_id, int rating, String rating_text, LocalDate feedBackDate) {
+    public Feedback(User user_id, Destiny destiny_id, int rating, String rating_text) {
         this.user_id = user_id;
-        this.destiny_id = destiny_id;
+        this.destiny = destiny_id;
         this.rating = rating;
         this.rating_text = rating_text;
-        FeedBackDate = feedBackDate;
+        FeedbackDate = LocalDate.now();
     }
 }
