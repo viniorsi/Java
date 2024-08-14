@@ -3,6 +3,9 @@ package com.viniorsi.TravelEase.Service.Destiny;
 import com.viniorsi.TravelEase.Domain.Destiny.DTO.DTOListDestinations;
 import com.viniorsi.TravelEase.Domain.Destiny.Entity.Destiny;
 import com.viniorsi.TravelEase.Domain.Destiny.Repository.DestinyRepository;
+import com.viniorsi.TravelEase.Domain.Feedback.DTO.DTOGiveFeedback;
+import com.viniorsi.TravelEase.Domain.Feedback.Entity.Feedback;
+import com.viniorsi.TravelEase.Domain.Feedback.Repository.FeedbackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,14 +20,10 @@ public class DestinyService {
     @Autowired
     DestinyRepository destinyRepository;
 
+    @Autowired
+    FeedbackRepository feedbackRepository;
 
-//    public Page<Destiny> listOfDestinations(Pageable pagination) {
-//        try {
-//            return destinyRepository.findAll(pagination);
-//        } catch (Exception e) {
-//            throw new RuntimeException("Erro ao listar destinos", e);
-//        }
-//    }
+
 
 
     public Page<DTOListDestinations> listOfDestinations(Pageable pagination) {
@@ -33,5 +32,7 @@ public class DestinyService {
     }
 
 
-
+    public Feedback giveDestinyFeedback(DTOGiveFeedback dtoGiveFeedback) {
+        Feedback feedback = new Feedback(dtoGiveFeedback.user_id(),dtoGiveFeedback.destiny_id(),dtoGiveFeedback.rating(),dtoGiveFeedback.rating_text(),dtoGiveFeedback.FeedBackDate());
+    }
 }

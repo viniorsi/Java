@@ -3,7 +3,10 @@ package com.viniorsi.TravelEase.Service.Ticket;
 import com.google.zxing.WriterException;
 import com.viniorsi.TravelEase.Domain.Airplane.Seat.Entity.Seat;
 import com.viniorsi.TravelEase.Domain.Airplane.Seat.Repository.SeatRepository;
+import com.viniorsi.TravelEase.Domain.Destiny.DTO.DTOListDestinations;
+import com.viniorsi.TravelEase.Domain.Destiny.Entity.Destiny;
 import com.viniorsi.TravelEase.Domain.Ticket.DTO.DTOTicketPerson;
+import com.viniorsi.TravelEase.Domain.Ticket.DTO.DTOTravelTicket;
 import com.viniorsi.TravelEase.Domain.Ticket.Entity.Ticket;
 import com.viniorsi.TravelEase.Domain.Ticket.Enums.StatusTicketUsageEnum;
 import com.viniorsi.TravelEase.Domain.Ticket.TicketRepository;
@@ -12,6 +15,8 @@ import com.viniorsi.TravelEase.Domain.Travel.Entity.Travel;
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import com.viniorsi.TravelEase.Service.QRCode.GenerateQrcode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -71,6 +76,12 @@ public class TicketService {
         }
 
     }
+
+    public Page<DTOTravelTicket> listTicketsByTransaction(Long userId, Long travelId, Pageable pageable) {
+        Page<Ticket> tickets = ticketRepository.findAllByUserIdAndTravelId(userId, travelId, pageable);
+        return tickets.map(DTOTravelTicket::new);
+    }
+
 
 
 

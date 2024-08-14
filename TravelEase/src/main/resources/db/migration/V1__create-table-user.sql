@@ -518,7 +518,22 @@ CREATE TABLE TICKET
     qrcode_hash   VARCHAR(64)  NOT NULL UNIQUE,
     emission_date date         NOT NULL,
     status        char(1)      NOT NULL,
-    usage_date    date
+    usage_date    date,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (travel_id) REFERENCES travels (id)
+);
+
+CREATE TABLE Feedback
+(
+    id         bigint AUTO_INCREMENT PRIMARY KEY,
+    user_id    bigint NOT NULL,
+    destiny_id bigint NOT NULL,
+    rating bigint(1) NOT NULL,
+    rating_text TEXT ,
+    date DATE,
+    FOREIGN KEY (destiny_id) REFERENCES destiny (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
+
 );
 
 
