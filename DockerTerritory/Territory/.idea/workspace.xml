@@ -41,6 +41,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.TravelControllerTest.executor": "Debug",
+    "Maven.Territory [clean].executor": "Run",
+    "Maven.Territory [install].executor": "Run",
     "Maven.TravelEase [install].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -141,7 +143,8 @@
       <workItem from="1726750965872" duration="4000" />
       <workItem from="1726751068788" duration="8782000" />
       <workItem from="1727095612197" duration="1824000" />
-      <workItem from="1727185060996" duration="8620000" />
+      <workItem from="1727185060996" duration="8495000" />
+      <workItem from="1727202166468" duration="3748000" />
     </task>
     <servers />
   </component>
