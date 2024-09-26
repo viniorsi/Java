@@ -1,6 +1,6 @@
 package com.viniorsi.TravelEase.Infra.Security;
 
-import com.viniorsi.TravelEase.Repository.User.UserRespository;
+import com.viniorsi.TravelEase.Domain.User.Repository.UserRespository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package com.viniorsi.TravelEase.Domain.Html;
+package com.viniorsi.TravelEase.Domain.Html.Domain;
 
 import jakarta.persistence.*;
 import lombok.*;

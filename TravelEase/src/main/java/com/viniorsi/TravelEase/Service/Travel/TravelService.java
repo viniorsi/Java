@@ -15,7 +15,7 @@ import com.viniorsi.TravelEase.Domain.Travel.Repository.TravelRepository;
 import com.viniorsi.TravelEase.Domain.TravelHotels.Entity.TravelHotels;
 import com.viniorsi.TravelEase.Domain.TravelHotels.Repository.TravelHotelsRepository;
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
-import com.viniorsi.TravelEase.Repository.User.UserRespository;
+import com.viniorsi.TravelEase.Domain.User.Repository.UserRespository;
 import com.viniorsi.TravelEase.Service.Transactional.TransactionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,27 +1,21 @@
 package com.viniorsi.TravelEase.Controller;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viniorsi.TravelEase.Domain.Address.DTO.DTOAddress;
 import com.viniorsi.TravelEase.Domain.User.DTO.DTOUserDetails;
 import com.viniorsi.TravelEase.Domain.User.DTO.DTOUserRegister;
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import com.viniorsi.TravelEase.Domain.User.Enums.StatusEnum;
 import com.viniorsi.TravelEase.Domain.User.Enums.Verificationtype;
-import com.viniorsi.TravelEase.Domain.UserVerification.DTO.DTOUserVerificationStatus;
 import com.viniorsi.TravelEase.Domain.UserVerification.DTO.DTOUserVerificationStatusRequest;
-import com.viniorsi.TravelEase.Repository.User.UserRespository;
-import com.viniorsi.TravelEase.Repository.UserVerification.UserVerificationRepository;
 import com.viniorsi.TravelEase.Service.User.UserRegisterService;
 import com.viniorsi.TravelEase.Service.User.UserVerificationCodeService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 

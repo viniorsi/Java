@@ -1,4 +1,4 @@
-package com.viniorsi.TravelEase.Repository.UserVerification;
+package com.viniorsi.TravelEase.Domain.UserVerification.Repository;
 
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
 import com.viniorsi.TravelEase.Domain.UserVerification.Entity.UserVerification;

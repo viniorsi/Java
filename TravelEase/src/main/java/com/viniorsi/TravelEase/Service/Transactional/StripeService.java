@@ -8,7 +8,7 @@ import com.stripe.param.*;
 import com.viniorsi.TravelEase.Domain.Transaction.DTO.PaymentIntentDTO;
 import com.viniorsi.TravelEase.Domain.User.DTO.DTOADDCard;
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
-import com.viniorsi.TravelEase.Repository.User.UserRespository;
+import com.viniorsi.TravelEase.Domain.User.Repository.UserRespository;
 import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

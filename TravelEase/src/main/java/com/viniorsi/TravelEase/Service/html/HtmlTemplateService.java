@@ -1,7 +1,7 @@
 package com.viniorsi.TravelEase.Service.html;
 
-import com.viniorsi.TravelEase.Domain.Html.HtmlTemplate;
-import com.viniorsi.TravelEase.Repository.html.HtmlTemplateRepository;
+import com.viniorsi.TravelEase.Domain.Html.Domain.HtmlTemplate;
+import com.viniorsi.TravelEase.Domain.Html.Repository.HtmlTemplateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.viniorsi.TravelEase.Service.html;
 
-import com.viniorsi.TravelEase.Domain.Html.HtmlTemplate;
-import com.viniorsi.TravelEase.Repository.html.HtmlTemplateRepository;
+import com.viniorsi.TravelEase.Domain.Html.Domain.HtmlTemplate;
+import com.viniorsi.TravelEase.Domain.Html.Repository.HtmlTemplateRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

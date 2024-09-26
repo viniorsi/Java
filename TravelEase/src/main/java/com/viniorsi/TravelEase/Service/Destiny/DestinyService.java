@@ -7,15 +7,12 @@ import com.viniorsi.TravelEase.Domain.Feedback.DTO.DTOGiveFeedback;
 import com.viniorsi.TravelEase.Domain.Feedback.DTO.DTOfeedbackDetails;
 import com.viniorsi.TravelEase.Domain.Feedback.Entity.Feedback;
 import com.viniorsi.TravelEase.Domain.Feedback.Repository.FeedbackRepository;
-import com.viniorsi.TravelEase.Domain.Travel.Repository.TravelRepository;
 import com.viniorsi.TravelEase.Domain.User.Entity.User;
-import com.viniorsi.TravelEase.Repository.User.UserRespository;
+import com.viniorsi.TravelEase.Domain.User.Repository.UserRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class DestinyService {

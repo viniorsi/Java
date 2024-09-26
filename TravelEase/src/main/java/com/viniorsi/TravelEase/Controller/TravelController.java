@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/travel")
 @SecurityRequirement(name = "bearer-key")
-public class TravelController {
+public class TravelController  {
 
     @Autowired
     TravelService travelService;

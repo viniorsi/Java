@@ -1,6 +1,6 @@
 package com.viniorsi.TravelEase.Service.Auth;
 
-import com.viniorsi.TravelEase.Repository.User.UserRespository;
+import com.viniorsi.TravelEase.Domain.User.Repository.UserRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
