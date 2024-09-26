@@ -1,21 +1,21 @@
 CREATE TABLE users
 (
-    id                 bigint PRIMARY KEY AUTO_INCREMENT,
-    Cpf                varchar(11) UNIQUE NOT NULL,
-    name               varchar(100)       NOT NULL,
-    tel                varchar(9),
-    ddd                varchar(2),
-    email              varchar(30)        NOT NULL,
-    password           varchar(255),
-    birthday           date,
-    status             char(1)
+    id       bigint PRIMARY KEY AUTO_INCREMENT,
+    Cpf      varchar(11) UNIQUE NOT NULL,
+    name     varchar(100)       NOT NULL,
+    tel      varchar(9),
+    ddd      varchar(2),
+    email    varchar(30)        NOT NULL,
+    password varchar(255),
+    birthday date,
+    status   char(1)
 );
 
 CREATE TABLE UsersVerification
 (
     id                bigint PRIMARY KEY AUTO_INCREMENT,
-    user_id           bigint NOT NULL,
-    verification_code varchar(255)  NOT NULL,
+    user_id           bigint       NOT NULL,
+    verification_code varchar(255) NOT NULL,
     expiration_date   date,
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
@@ -23,10 +23,31 @@ CREATE TABLE UsersVerification
 CREATE TABLE OptCodeVerifications
 (
     id                bigint PRIMARY KEY AUTO_INCREMENT,
-    user_id           bigint NOT NULL,
-    verification_code varchar(255)  NOT NULL,
+    user_id           bigint       NOT NULL,
+    verification_code varchar(255) NOT NULL,
     expiration_date   date,
     FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+CREATE TABLE Products
+(
+    id          bigint PRIMARY KEY AUTO_INCREMENT,
+    name        varchar(40)    NOT NULL,
+    description TEXT           NOT NULL,
+    price       decimal(10, 2) NOT NULL
+);
+
+CREATE TABLE User_Product
+(
+    id               bigint PRIMARY KEY AUTO_INCREMENT,
+    id_user          bigint,
+    id_product       bigint,
+    name             varchar(40) NOT NULL,
+    description      TEXT        NOT NULL,
+    data_contratacao DATE,
+    status_ativo     BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (id_user) REFERENCES users (id),
+    FOREIGN KEY (id_product) REFERENCES Products (id)
 );
 
 
@@ -36,6 +57,15 @@ CREATE TABLE html_templates
     name    VARCHAR(255) NOT NULL,
     content TEXT         NOT NULL
 );
+
+INSERT INTO Products (name, description, price)
+VALUES
+    ('Telefonia Móvel 5G', 'Serviço de telefonia móvel com tecnologia 5G.', 99.90),
+    ('Internet de Fibra', 'Conexão de internet de alta velocidade via fibra ótica.', 149.90),
+    ('TV por Assinatura', 'Pacote de canais de TV por assinatura.', 79.90),
+    ('Produtos de Casa Inteligente', 'Soluções de automação residencial, como lâmpadas inteligentes, câmeras e sensores.', 299.90),
+    ('Netflix', 'Assinatura de streaming para filmes e séries da Netflix.', 29.90),
+    ('Amazon Prime', 'Serviço de streaming de filmes, séries e entregas rápidas da Amazon.', 19.90);
 
 INSERT INTO html_templates (name, content)
 VALUES ('welcome_email', '<html lang="pt-BR">
