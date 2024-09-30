@@ -1,8 +1,10 @@
 package com.vivo.territory.Controller;
 
+import com.vivo.territory.Domain.Products.DTO.ProductsDTO;
 import com.vivo.territory.Domain.User.DTO.DTOUserRegister;
 import com.vivo.territory.Domain.User.Entity.User;
 import com.vivo.territory.Domain.UserProduct.DTO.DTOUserProduct;
+import com.vivo.territory.Domain.UserProduct.DTO.DTOUserProductDetails;
 import com.vivo.territory.Domain.UserVerification.DTO.DTOUserVerificationStatus;
 import com.vivo.territory.Domain.UserVerification.DTO.DTOUserVerificationStatusRequest;
 import com.vivo.territory.Service.User.UserRegisterService;
@@ -10,6 +12,9 @@ import com.vivo.territory.Service.User.UserVerificationCodeService;
 import com.vivo.territory.Service.UserProduct.UserProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -65,6 +70,14 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+
+    }
+
+    @GetMapping("{user_id}/userProducts")
+    public ResponseEntity<Page<DTOUserProductDetails>> listUserProducts( @PathVariable("user_id") Long userId, @PageableDefault(size = 10, page = 0,sort = {"id"}) Pageable paginacao) throws Exception {
+
+        var page = userProductService.listUserProducts(userId,paginacao);
+        return ResponseEntity.ok(page);
 
     }
 

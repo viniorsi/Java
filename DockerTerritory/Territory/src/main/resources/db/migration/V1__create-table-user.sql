@@ -11,7 +11,7 @@ CREATE TABLE users
     status   char(1)
 );
 
-CREATE TABLE UsersVerification
+CREATE TABLE users_verification
 (
     id                bigint PRIMARY KEY AUTO_INCREMENT,
     user_id           bigint       NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE UsersVerification
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-CREATE TABLE OptCodeVerifications
+CREATE TABLE opt_code_verifications
 (
     id                bigint PRIMARY KEY AUTO_INCREMENT,
     user_id           bigint       NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE OptCodeVerifications
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-CREATE TABLE Products
+CREATE TABLE products
 (
     id          bigint PRIMARY KEY AUTO_INCREMENT,
     name        varchar(40)    NOT NULL,
@@ -37,17 +37,15 @@ CREATE TABLE Products
     price       decimal(10, 2) NOT NULL
 );
 
-CREATE TABLE User_Product
+CREATE TABLE user_product
 (
     id               bigint PRIMARY KEY AUTO_INCREMENT,
-    id_user          bigint,
-    id_product       bigint,
-    name             varchar(40) NOT NULL,
-    description      TEXT        NOT NULL,
-    data_contratacao DATE,
-    status_ativo     BOOLEAN DEFAULT TRUE,
+    id_user          bigint NOT NULL ,
+    id_product       bigint NOT NULL ,
+    data_contratacao DATE NOT NULL ,
+    status     BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (id_user) REFERENCES users (id),
-    FOREIGN KEY (id_product) REFERENCES Products (id)
+    FOREIGN KEY (id_product) REFERENCES products (id)
 );
 
 
@@ -58,7 +56,7 @@ CREATE TABLE html_templates
     content TEXT         NOT NULL
 );
 
-INSERT INTO Products (name, description, price)
+INSERT INTO products (name, description, price)
 VALUES
     ('Telefonia Móvel 5G', 'Serviço de telefonia móvel com tecnologia 5G.', 99.90),
     ('Internet de Fibra', 'Conexão de internet de alta velocidade via fibra ótica.', 149.90),

@@ -3,8 +3,8 @@ package com.vivo.territory.Domain.Products.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table(name = "Products")
-@Entity(name = "Product")
+@Table(name = "products")
+@Entity(name = "product")
 @Getter
 @Setter
 @NoArgsConstructor

@@ -8,7 +8,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Table(name = "User_Product")
+@Table(name = "user_product")
 @Entity(name = "User_Product")
 @Getter
 @Setter
@@ -24,16 +24,17 @@ public class UserProduct {
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     private User user;
     @OneToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinColumn(name = "id_product", referencedColumnName = "id")
     private Product product;
-    private LocalDateTime contraction_date;
+    private LocalDateTime data_contratacao;
     private boolean status;
 
     public UserProduct(User u, Product p) {
 
         this.user = u;
         this.product = p;
-        this.contraction_date = LocalDateTime.now();
+        this.data_contratacao = LocalDateTime.now();
+        this.status = true;
 
 
 
