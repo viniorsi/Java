@@ -59,7 +59,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/vinicius.orsi/Desktop/Java/DockerTerritory/Territory",
+    "last_opened_file_path": "C:/Users/vinicius.orsi/Desktop/Paygo/gateway-pix-cielo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -153,6 +153,8 @@
       <workItem from="1727202166468" duration="3748000" />
       <workItem from="1727376361843" duration="7174000" />
       <workItem from="1727439015635" duration="18711000" />
+      <workItem from="1727707746848" duration="230000" />
+      <workItem from="1727879779650" duration="19000" />
     </task>
     <servers />
   </component>
