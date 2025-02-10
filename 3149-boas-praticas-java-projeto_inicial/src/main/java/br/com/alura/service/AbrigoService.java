@@ -3,6 +3,10 @@ package br.com.alura.service;
 import br.com.alura.client.ClientHttpConfiguration;
 import br.com.alura.domain.Abrigo;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -14,6 +18,23 @@ import java.util.Scanner;
 public class AbrigoService {
 
     ClientHttpConfiguration clientHttpConfiguration = new ClientHttpConfiguration();
+
+    private void listarAbrigos() throws IOException, InterruptedException {
+        HttpResponse<String> response = clientHttpConfiguration.dispararRequisiçãoGet("http://localhost:8080/abrigos");
+        String responseBody = response.body();
+        JsonArray jsonArray = JsonParser.parseString(responseBody).getAsJsonArray();
+        System.out.println("Abrigos cadastrados:");
+        for (JsonElement element : jsonArray) {
+            JsonObject jsonObject = element.getAsJsonObject();
+            String nome = jsonObject.get("nome").getAsString();
+            String telefone = jsonObject.get("telefone").getAsString();
+            String email = jsonObject.get("email").getAsString();
+            String endereco = jsonObject.get("endereco").getAsString();
+
+            Abrigo abrigo = new Abrigo(nome, telefone, email, endereco);
+            System.out.println(abrigo.getId() +" - " +nome);
+        }
+    }
 
     public void listarAbrigo() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
@@ -38,8 +59,10 @@ public class AbrigoService {
         String telefone = new Scanner(System.in).nextLine();
         System.out.println("Digite o email do abrigo:");
         String email = new Scanner(System.in).nextLine();
+        System.out.println("Digite o endereco do abrigo:");
+        String endereco = new Scanner(System.in).nextLine();
 
-        Abrigo abrigo = new Abrigo(nome, telefone, email);
+        Abrigo abrigo = new Abrigo(nome,endereco, telefone, email);
 
         HttpClient client = HttpClient.newHttpClient();
         String uri = "http://localhost:8080/abrigos";

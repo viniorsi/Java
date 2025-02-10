@@ -10,6 +10,7 @@ public class Pet {
     private Float peso;
     private int idade;
 
+
     public Pet(String tipo, String nome, String raca, String cor, Float peso, int idade) {
         this.tipo = tipo;
         this.nome = nome;
@@ -17,6 +18,10 @@ public class Pet {
         this.cor = cor;
         this.peso = peso;
         this.idade = idade;
+    }
+
+    public Pet (){
+
     }
 
     public Long getId() {
@@ -37,6 +42,14 @@ public class Pet {
 
     public int getIdade() {
         return idade;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public Float getPeso() {
+        return peso;
     }
 
 
