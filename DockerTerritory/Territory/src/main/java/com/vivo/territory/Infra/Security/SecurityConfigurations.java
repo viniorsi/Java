@@ -26,12 +26,16 @@ public class SecurityConfigurations {
                 http.csrf(csrf -> csrf.disable())
                         .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests(req -> {
-                            req.requestMatchers("/login/**","/user/**","/products").permitAll();
+                            req.requestMatchers("/login/**","/user/**","/products","/actuator/**\"").permitAll();
                             req.anyRequest().authenticated();
                         })
                         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+
                         .build();
     }
+
+
+
 
 
 

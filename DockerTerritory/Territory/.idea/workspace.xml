@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0133d347-0981-40f1-8ab7-6ecce3b8b879" name="Changes" comment="" />
+    <list default="true" id="0133d347-0981-40f1-8ab7-6ecce3b8b879" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../ODS3API/BackEnd/ODS3/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ODS3API/BackEnd/ODS3/.idea/vcs.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,16 +16,28 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
         <option value="package-info" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;viniorsi&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/viniorsi/Java.git&quot;,
+    &quot;accountId&quot;: &quot;b5a03f25-34a8-4deb-ad42-95141ba944d9&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -42,6 +56,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.TravelControllerTest.executor": "Debug",
@@ -70,10 +85,41 @@
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.TravelControllerTest.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.Territory [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Territory [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.TravelEase [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.TerritoryApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.TravelEaseApplication.executor&quot;: &quot;Run&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vinicius/Desktop/Java/DockerTerritory/Territory&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.General&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+>>>>>>> af4eb96a51f61ddbdbfcf523d410966b71c8b074
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Vinicius\Desktop\Java\DockerTerritory\Territory\src" />
       <recent name="C:\Users\Vinicius\Desktop\Territory\src\main\java\com\vivo\territory\Domain\OtpVerification" />
       <recent name="C:\Users\Vinicius\Desktop\Territory\src\main\java\com\vivo\territory\Domain" />
       <recent name="C:\Users\Vinicius\Desktop\Territory\src\main\java\com\vivo\territory\Domain\UserVerification\Entity" />
@@ -126,8 +172,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
     </attachedChunks>
   </component>
@@ -155,8 +201,21 @@
       <workItem from="1727439015635" duration="18711000" />
       <workItem from="1727707746848" duration="230000" />
       <workItem from="1727879779650" duration="19000" />
+<<<<<<< HEAD
       <workItem from="1728432398011" duration="239000" />
       <workItem from="1728492988501" duration="151000" />
+=======
+      <workItem from="1728431569942" duration="1549000" />
+      <workItem from="1728515651247" duration="4375000" />
+      <workItem from="1728561773522" duration="8751000" />
+      <workItem from="1729002782636" duration="6999000" />
+      <workItem from="1729451699960" duration="933000" />
+      <workItem from="1729520227934" duration="25000" />
+      <workItem from="1729520396130" duration="493000" />
+      <workItem from="1729522400886" duration="1303000" />
+      <workItem from="1729524041373" duration="9000" />
+      <workItem from="1729524424944" duration="12000" />
+>>>>>>> af4eb96a51f61ddbdbfcf523d410966b71c8b074
     </task>
     <servers />
   </component>
