@@ -1,6 +1,6 @@
 package com.br.TravelEasy.Auth.Feing.User;
 
-import com.br.TravelEasy.Auth.Feing.Address.Entity.Address;
+import com.br.TravelEasy.Auth.Feing.User.Address.Entity.Address;
 import com.br.TravelEasy.Auth.Feing.enums.StatusEnum;
 import com.br.TravelEasy.Auth.Feing.request.DTOUserRegister;
 import jakarta.persistence.*;
@@ -25,7 +25,6 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id  ;
-    private String id_customer_stripe;
     private String cpf ;
     private String name ;
     private String tel ;

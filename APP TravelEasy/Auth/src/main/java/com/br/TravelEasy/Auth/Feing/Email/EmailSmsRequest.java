@@ -5,8 +5,10 @@ import com.br.TravelEasy.Auth.Feing.User.UserVerification;
 import com.br.TravelEasy.Auth.Feing.enums.Verificationtype;
 
 public record EmailSmsRequest(
-        User user,
-        UserVerification userVerification,
+        String email,
+        String verificiationCode,
+        String ddd,
+        String tel,
         Verificationtype verificationtype
 ) {
 }

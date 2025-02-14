@@ -12,7 +12,7 @@
 	<artifactId>EmailSmsSender</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>EmailSmsSender</name>
-	<description>Projeto para enviar emails e Sms para usuarios</description>
+	<description>Projeto de envio de mensagens e emails</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -28,9 +28,18 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-		<kotlin.version>1.9.25</kotlin.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -91,54 +100,27 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.16.0</version> <!-- Verifique se é compatível com seu Spring Boot -->
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-kotlin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>10.4.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
-		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.jetbrains.kotlin</groupId>
-				<artifactId>kotlin-maven-plugin</artifactId>
-				<configuration>
-					<args>
-						<arg>-Xjsr305=strict</arg>
-					</args>
-					<compilerPlugins>
-						<plugin>spring</plugin>
-						<plugin>jpa</plugin>
-						<plugin>all-open</plugin>
-					</compilerPlugins>
-					<pluginOptions>
-						<option>all-open:annotation=jakarta.persistence.Entity</option>
-						<option>all-open:annotation=jakarta.persistence.MappedSuperclass</option>
-						<option>all-open:annotation=jakarta.persistence.Embeddable</option>
-					</pluginOptions>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.jetbrains.kotlin</groupId>
-						<artifactId>kotlin-maven-allopen</artifactId>
-						<version>${kotlin.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.jetbrains.kotlin</groupId>
-						<artifactId>kotlin-maven-noarg</artifactId>
-						<version>${kotlin.version}</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

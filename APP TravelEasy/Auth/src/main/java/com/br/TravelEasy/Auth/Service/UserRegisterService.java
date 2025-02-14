@@ -1,7 +1,7 @@
 package com.br.TravelEasy.Auth.Service;
 
 
-import com.br.TravelEasy.Auth.Feing.Email.EmailPublisher;
+import com.br.TravelEasy.Auth.Feing.Email.MessagePublisher;
 import com.br.TravelEasy.Auth.Feing.Email.EmailSmsRequest;
 import com.br.TravelEasy.Auth.Feing.User.User;
 import com.br.TravelEasy.Auth.Feing.User.UserRespository;
@@ -25,7 +25,7 @@ public class UserRegisterService {
     private EncryptDecrypt encryptDecrypt;
 
     @Autowired
-    EmailPublisher emailPublisher;
+    MessagePublisher messagePublisher;
 
     public DTOUserDetails createUser(@Valid DTOUserRegister userData) throws Exception {
         var user = new User(userData);
@@ -39,8 +39,8 @@ public class UserRegisterService {
 
 
 
-            EmailSmsRequest emailSmsRequest = new EmailSmsRequest(user, userVerification,userData.verificationType());
-            emailPublisher.publishEmail(emailSmsRequest);
+            EmailSmsRequest emailSmsRequest = new EmailSmsRequest(user.getEmail(), userVerification.getVerificationCode(),user.getDdd(),user.getTel(),userData.verificationType());
+            messagePublisher.publishEmail(emailSmsRequest);
 
 //               TODO USAR NO SERVIÇO DE EMAIL
 //            if (userData.verificationType() == Verificationtype.EMAIL) {

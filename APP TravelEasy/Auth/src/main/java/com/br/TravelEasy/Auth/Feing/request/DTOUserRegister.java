@@ -1,7 +1,7 @@
 package com.br.TravelEasy.Auth.Feing.request;
 
 
-import com.br.TravelEasy.Auth.Feing.Address.DTO.DTOAddress;
+import com.br.TravelEasy.Auth.Feing.User.Address.DTO.DTOAddress;
 import com.br.TravelEasy.Auth.Feing.enums.Verificationtype;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
