@@ -2,6 +2,7 @@ package com.br.TravelEasy.Auth.infra.Security;
 
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
+
 import com.br.TravelEasy.Auth.Feing.User.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import java.time.ZoneOffset;
 public class TokenService {
 
     @Value("${api.security.token.secret}")
-    String secret = "777";
+    String secret = "";
 
     public String generateToken(User user) {
         try {

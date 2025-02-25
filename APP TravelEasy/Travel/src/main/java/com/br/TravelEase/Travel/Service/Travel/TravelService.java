@@ -7,8 +7,14 @@ import com.br.TravelEase.Travel.Domain.Travel.DTO.DTOTravelResponse;
 import com.br.TravelEase.Travel.Domain.Travel.DTO.DTOTravelResponseWithoutHotel;
 import com.br.TravelEase.Travel.Domain.Travel.Entity.Travel;
 import com.br.TravelEase.Travel.Domain.Travel.Repository.TravelRepository;
+import com.br.TravelEase.Travel.feign.HotelClient;
+import com.br.TravelEase.Travel.feign.response.HotelDetailResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class TravelService {
@@ -18,6 +24,8 @@ public class TravelService {
 
     @Autowired
     DestinyRepository destinyRepository;
+
+    HotelClient hotelClient;
 
     @Autowired
     HotelsRepository hotelsRepository;
@@ -40,8 +48,6 @@ public class TravelService {
 // TODO se a viagem for com hotel, devera chamar o serviço de hotel se não segue o fluxo normal
         value = (hotels != null)
                 ?
-
-
 //                transactionalService.getPriceWithHotel(dtoTravelRequest, destiny.getDaily_value(), hotels)
 //                : transactionalService.getPriceWithoutHotel(dtoTravelRequest, destiny.getDaily_value());
 
@@ -71,6 +77,50 @@ public class TravelService {
 //            throw new RuntimeException("Erro ao associar hotel a viagem" + e.getMessage());
 //        }
 
+    }
+
+    public BigDecimal calculateTotalValue(DTOTravelRequest travelRequest,BigDecimal destinyDayValue, Long quartoId) {
+        HotelDetailResponse hotel = hotelClient.quartoDetails(quartoId);
+        BigDecimal baseValue = calculateDaysBaseValue(travelRequest,destinyDayValue,hotel.precoPorNoite());
+        baseValue = addPetFees(baseValue, travelRequest, hotel);
+        baseValue = addKidsDiscount(baseValue, travelRequest, hotel);
+        baseValue = applyRoundTripDiscount(baseValue, travelRequest);
+
+        return baseValue;
+    }
+
+    private BigDecimal calculateDaysBaseValue(DTOTravelRequest request, BigDecimal destinyDayValue,BigDecimal hotelDayValue) {
+        Long days = ChronoUnit.DAYS.between(request.departureDate(), request.returnDate());
+        BigDecimal destinyValue = destinyDayValue.multiply(BigDecimal.valueOf(days));
+        BigDecimal hotelValue = hotelDayValue.multiply(BigDecimal.valueOf(request.adults_count()));
+        return destinyValue.add(hotelValue);
+    }
+
+    private BigDecimal addPetFees(BigDecimal value, DTOTravelRequest request, HotelDetailResponse hotel) {
+        if (request.pet() > 0) {
+            BigDecimal petFee = hotel.precoPorNoite()
+                    .multiply(BigDecimal.valueOf(request.pet()))
+                    .multiply(BigDecimal.valueOf(3));
+            return value.add(petFee);
+        }
+        return value;
+    }
+
+    private BigDecimal addKidsDiscount(BigDecimal value, DTOTravelRequest request, HotelDetailResponse hotel) {
+        if (request.kids_count() >= 2) {
+            BigDecimal kidsAddition = hotel.precoPorNoite()
+                    .multiply(BigDecimal.valueOf(request.kids_count()))
+                    .divide(BigDecimal.valueOf(2), RoundingMode.HALF_UP);
+            return value.add(kidsAddition);
+        }
+        return value;
+    }
+
+    private BigDecimal applyRoundTripDiscount(BigDecimal value, DTOTravelRequest request) {
+        if (request.isRoundTrip()) {
+            return value.multiply(BigDecimal.valueOf(0.9));
+        }
+        return value;
     }
 
 

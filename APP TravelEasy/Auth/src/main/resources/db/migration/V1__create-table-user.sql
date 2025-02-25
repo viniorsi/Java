@@ -144,3 +144,31 @@ VALUES ('welcome_email', '<html lang="en">
 </html>
 ');
 
+CREATE TABLE hoteis (
+                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                        destino_id BIGINT NOT NULL,
+                        nome VARCHAR(100) NOT NULL,
+                        localizacao VARCHAR(255) NOT NULL,
+                        descricao TEXT,
+                        classificacao DECIMAL(3,1),  -- Ex: 4.5 (opcional)
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE quartos (
+                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                         hotel_id BIGINT NOT NULL,
+                         tipo VARCHAR(20) NOT NULL,
+                         numero VARCHAR(10),
+                         preco_por_noite DECIMAL(10,2) NOT NULL,
+                         capacidade INT NOT NULL,
+                         aceita_pet BOOLEAN NOT NULL DEFAULT FALSE,
+                         version BIGINT NOT NULL DEFAULT 0,
+                         FOREIGN KEY (hotel_id) REFERENCES hoteis(id)
+);
+
+CREATE TABLE quarto_comodidades (
+                                    quarto_id BIGINT NOT NULL,
+                                    comodidade VARCHAR(50) NOT NULL,
+                                    FOREIGN KEY (quarto_id) REFERENCES quartos(id)
+);
+
