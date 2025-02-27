@@ -7,15 +7,14 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public record QuartoDetalhesResponse(
-        private Long id,
-        private TipoQuarto tipo,
-        private BigDecimal precoPorNoite,
-        private List<String> comodidades, // WiFi, TV, Ar-condicionado, etc.
-        private List<String> fotos, // URLs das imagens
-        private Integer capacidade) {
+         Long id,
+         TipoQuarto tipo,
+         BigDecimal precoPorNoite,
+         List<String> fotos, // URLs das imagens
+         Integer capacidade) {
 
     public QuartoDetalhesResponse(Quarto quarto){
-        this(quarto.getId(),quarto.getTipo(),quarto.getPrecoPorNoite(),quarto.getComodidades(),quarto.getFotos(),quarto.getCapacidade());
+        this(quarto.getId(),quarto.getTipo(),quarto.getPrecoPorNoite(),quarto.getFotos(),quarto.getCapacidade());
     }
 
 }

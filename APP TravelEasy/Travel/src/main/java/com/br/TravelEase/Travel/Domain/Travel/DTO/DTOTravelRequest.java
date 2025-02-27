@@ -3,7 +3,7 @@ package com.br.TravelEase.Travel.Domain.Travel.DTO;
 
 import com.br.TravelEase.Travel.Domain.Ticket.DTO.DTOTicketPerson;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public record DTOTravelRequest(
@@ -14,8 +14,8 @@ public record DTOTravelRequest(
         int adults_count,
         int kids_count,
         int pet,
-        LocalDateTime departureDate,
-        LocalDateTime returnDate,
+        LocalDate departureDate,
+        LocalDate returnDate,
         Boolean isRoundTrip,
         int ticketscount,
         List<DTOTicketPerson> ticketsList

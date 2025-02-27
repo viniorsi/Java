@@ -1,7 +1,6 @@
 package com.br.TravelEase.Hotels.model.Quarto;
 
 import com.br.TravelEase.Hotels.model.Quarto.Enum.TipoQuarto;
-import com.br.TravelEase.Hotels.model.Quarto.Quarto.Enum.TipoQuarto;
 import com.br.TravelEase.Hotels.model.Hotel.Hotel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
@@ -41,16 +40,13 @@ public class Quarto {
     @PositiveOrZero(message = "A capacidade deve ser zero ou mais")
     private Integer capacidade; // Número máximo de hóspedes
 
-    @ElementCollection
-    @CollectionTable(name = "quarto_comodidades", joinColumns = @JoinColumn(name = "quarto_id"))
-    private List<String> comodidades; // Ex: ["Wi-Fi", "TV", "Ar Condicionado"]
-
     @Column(name = "aceita_pet")
     private boolean aceitaPet;
 
-    @Column(name = "fotos")
     @ElementCollection
-    private List<String> fotos; // URLs das fotos do quarto
+    @CollectionTable(name = "quarto_fotos", joinColumns = @JoinColumn(name = "quarto_id"))
+    @Column(name = "foto") // Nome da coluna que armazena as URLs das fotos
+    private List<String> fotos;  // URLs das fotos do quarto
 
     // Campo para controle de concorrência (Otimistic Locking)
     @Version

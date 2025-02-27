@@ -5,5 +5,9 @@ public enum TipoQuarto {
     LUXO,
     SUITE,
     FAMILIA,
-    PRESIDENCIAL
+    PRESIDENCIAL;
+
+    public static TipoQuarto fromString(String value) {
+        return TipoQuarto.valueOf(value.toUpperCase());
+    }
 }

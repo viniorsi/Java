@@ -155,20 +155,178 @@ CREATE TABLE hoteis (
 );
 
 CREATE TABLE quartos (
-                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                         hotel_id BIGINT NOT NULL,
-                         tipo VARCHAR(20) NOT NULL,
-                         numero VARCHAR(10),
-                         preco_por_noite DECIMAL(10,2) NOT NULL,
-                         capacidade INT NOT NULL,
-                         aceita_pet BOOLEAN NOT NULL DEFAULT FALSE,
-                         version BIGINT NOT NULL DEFAULT 0,
-                         FOREIGN KEY (hotel_id) REFERENCES hoteis(id)
+                         id BIGINT AUTO_INCREMENT PRIMARY KEY, -- ID do quarto
+                         hotel_id BIGINT NOT NULL, -- Relacionamento com a tabela hoteis
+                         tipo VARCHAR(20) NOT NULL, -- Tipo do quarto (STANDARD, LUXO, SUITE, etc.)
+                         numero VARCHAR(10) NOT NULL, -- Número do quarto (ex: "101A")
+                         preco_por_noite DECIMAL(10, 2) NOT NULL, -- Preço por noite
+                         capacidade INT NOT NULL, -- Capacidade máxima de hóspedes
+                         aceita_pet BOOLEAN NOT NULL DEFAULT FALSE, -- Aceita pets?
+                         version BIGINT NOT NULL DEFAULT 0, -- Controle de concorrência (Otimistic Locking)
+                         FOREIGN KEY (hotel_id) REFERENCES hoteis(id) -- Chave estrangeira para a tabela hoteis
 );
 
-CREATE TABLE quarto_comodidades (
-                                    quarto_id BIGINT NOT NULL,
-                                    comodidade VARCHAR(50) NOT NULL,
-                                    FOREIGN KEY (quarto_id) REFERENCES quartos(id)
+CREATE TABLE quarto_fotos (
+                              quarto_id BIGINT NOT NULL, -- Relacionamento com a tabela quartos
+                              foto VARCHAR(255) NOT NULL, -- URL da foto
+                              FOREIGN KEY (quarto_id) REFERENCES quartos(id) -- Chave estrangeira para a tabela quartos
 );
+
+
+CREATE TABLE reservas (
+                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                          quarto_id BIGINT NOT NULL,  -- Relacionamento com o quarto reservado
+                          usuario_id BIGINT NOT NULL,  -- ID do usuário (referência externa)
+                          check_in DATE NOT NULL,  -- Data de entrada
+                          check_out DATE NOT NULL,  -- Data de saída
+                          valor_total DECIMAL(10,2) NOT NULL,  -- Valor total da reserva
+                          status ENUM('PENDENTE', 'CONFIRMADA', 'CANCELADA') NOT NULL DEFAULT 'PENDENTE',  -- Status da reserva
+                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Data de criação
+                          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- Data de atualização
+                          FOREIGN KEY (quarto_id) REFERENCES quartos(id)  -- FK para o quarto
+);
+
+INSERT INTO hoteis (destino_id, nome, localizacao, descricao, classificacao)
+VALUES
+    (1, 'Hotel Lagos', 'Lagos, Nigéria', 'Luxuoso hotel em Lagos, Nigéria', 4.5),
+    (2, 'Hotel Cairo', 'Cairo, Egito', 'Hotel com vista para as pirâmides no Cairo, Egito', 4.7),
+    (3, 'Cape Town Lodge', 'Cidade do Cabo, África do Sul', 'Aconchegante lodge na Cidade do Cabo', 4.2),
+    (4, 'Safari Hotel', 'Parque Nacional do Quênia', 'Hotel próximo ao Parque Nacional do Quênia', 4.4),
+    (5, 'Accra Beach Resort', 'Accra, Gana', 'Resort de luxo na praia de Accra, Gana', 4.6);
+
+INSERT INTO hoteis (destino_id, nome, localizacao, descricao, classificacao)
+VALUES
+    (6, 'New York Hotel', 'Nova York, EUA', 'Hotel de luxo em Nova York, EUA', 4.8),
+    (7, 'Toronto Inn', 'Toronto, Canadá', 'Hotel confortável em Toronto, Canadá', 4.3),
+    (8, 'Cancun Resort', 'Cancun, México', 'Resort all-inclusive em Cancun, México', 4.7),
+    (9, 'Havana Club', 'Havana, Cuba', 'Hotel histórico em Havana, Cuba', 4.5),
+    (10, 'Punta Cana Resort', 'Punta Cana, República Dominicana', 'Resort de luxo em Punta Cana', 4.6);
+
+INSERT INTO hoteis (destino_id, nome, localizacao, descricao, classificacao)
+VALUES
+    (11, 'Rio Palace', 'Copacabana, Brasil', 'Hotel luxuoso em Copacabana', 4.7),
+    (12, 'Buenos Aires Plaza', 'Buenos Aires, Argentina', 'Hotel elegante em Buenos Aires', 4.5),
+    (13, 'Bogota Grand Hotel', 'Bogotá, Colômbia', 'Hotel central em Bogotá', 4.3),
+    (14, 'Santiago Resort', 'Santiago, Chile', 'Resort all-inclusive em Santiago', 4.4),
+    (15, 'Lima Beach Hotel', 'Lima, Peru', 'Hotel de praia em Lima', 4.2);
+
+INSERT INTO hoteis (destino_id, nome, localizacao, descricao, classificacao)
+VALUES
+    (16, 'Beijing Grand Hotel', 'Pequim, China', 'Hotel luxuoso em Pequim', 4.7),
+    (17, 'Taj Mahal Palace', 'Mumbai, Índia', 'Hotel histórico em Mumbai', 4.8),
+    (18, 'Tokyo Tower Hotel', 'Tóquio, Japão', 'Hotel moderno em Tóquio', 4.6),
+    (19, 'Seoul Plaza', 'Seul, Coreia do Sul', 'Hotel elegante em Seul', 4.5),
+    (20, 'Bali Beach Resort', 'Bali, Indonésia', 'Resort de luxo em Bali', 4.7);
+
+INSERT INTO hoteis (destino_id, nome, localizacao, descricao, classificacao)
+VALUES
+    (21, 'Berlin Grand Hotel', 'Berlim, Alemanha', 'Hotel luxuoso em Berlim', 4.6),
+    (22, 'Paris Eiffel Hotel', 'Paris, França', 'Hotel elegante em Paris', 4.8),
+    (23, 'London Royal Palace', 'Londres, Reino Unido', 'Hotel clássico em Londres', 4.7),
+    (24, 'Rome Colosseum Hotel', 'Roma, Itália', 'Hotel histórico em Roma', 4.6),
+    (25, 'Madrid Central Hotel', 'Madri, Espanha', 'Hotel central em Madri', 4.5);
+
+INSERT INTO hoteis (destino_id, nome, localizacao, descricao, classificacao)
+VALUES
+    (26, 'Sydney Opera Hotel', 'Sydney, Austrália', 'Hotel luxuoso em Sydney', 4.6),
+    (27, 'Auckland Harbor Hotel', 'Auckland, Nova Zelândia', 'Hotel elegante em Auckland', 4.5),
+    (28, 'Fiji Beach Resort', 'Fiji', 'Resort all-inclusive em Fiji', 4.7),
+    (29, 'Papua New Guinea Paradise', 'Papua-Nova Guiné', 'Resort de luxo em Papua-Nova Guiné', 4.4),
+    (30, 'Samoa Island Hotel', 'Samoa', 'Hotel de ilha em Samoa', 4.3);
+
+INSERT INTO quartos (hotel_id, tipo, numero, preco_por_noite, capacidade, aceita_pet) VALUES
+-- Quartos para Hotel Lagos (ID: 1)
+(1, UPPER('STANDARD'), '101', 150.00, 2, TRUE),
+(1, UPPER('STANDARD'), '102', 150.00, 2, TRUE),
+(1, UPPER('LUXO'), '201', 200.00, 3, FALSE),
+(1, UPPER('LUXO'), '202', 200.00, 3, FALSE),
+(1, UPPER('SUITE'), '301', 300.00, 4, TRUE),
+(1, UPPER('SUITE'), '302', 300.00, 4, TRUE),
+(1, UPPER('PRESIDENCIAL'), '401', 500.00, 5, FALSE),
+(1, UPPER('PRESIDENCIAL'), '402', 500.00, 5, FALSE),
+(1, UPPER('FAMILIA'), '501', 250.00, 4, TRUE),
+(1, UPPER('FAMILIA'), '502', 250.00, 4, TRUE),
+
+-- Quartos para Hotel Cairo (ID: 2)
+(2, UPPER('STANDARD'), '101', 180.00, 2, FALSE),
+(2, UPPER('STANDARD'), '102', 180.00, 2, FALSE),
+(2, UPPER('LUXO'), '201', 250.00, 3, TRUE),
+(2, UPPER('LUXO'), '202', 250.00, 3, TRUE),
+(2, UPPER('SUITE'), '301', 350.00, 4, FALSE),
+(2, UPPER('SUITE'), '302', 350.00, 4, FALSE),
+(2, UPPER('PRESIDENCIAL'), '401', 600.00, 5, TRUE),
+(2, UPPER('PRESIDENCIAL'), '402', 600.00, 5, TRUE),
+(2, UPPER('FAMILIA'), '501', 270.00, 4, FALSE),
+(2, UPPER('FAMILIA'), '502', 270.00, 4, FALSE),
+
+-- Quartos para Cape Town Lodge (ID: 3)
+(3, UPPER('STANDARD'), '101', 160.00, 2, TRUE),
+(3, UPPER('STANDARD'), '102', 160.00, 2, TRUE),
+(3, UPPER('LUXO'), '201', 210.00, 3, FALSE),
+(3, UPPER('LUXO'), '202', 210.00, 3, FALSE),
+(3, UPPER('SUITE'), '301', 310.00, 4, TRUE),
+(3, UPPER('SUITE'), '302', 310.00, 4, TRUE),
+(3, UPPER('PRESIDENCIAL'), '401', 550.00, 5, FALSE),
+(3, UPPER('PRESIDENCIAL'), '402', 550.00, 5, FALSE),
+(3, UPPER('FAMILIA'), '501', 230.00, 4, TRUE),
+(3, UPPER('FAMILIA'), '502', 230.00, 4, TRUE),
+
+-- Quartos para Safari Hotel (ID: 4)
+(4, UPPER('STANDARD'), '101', 170.00, 2, FALSE),
+(4, UPPER('STANDARD'), '102', 170.00, 2, FALSE),
+(4, UPPER('LUXO'), '201', 230.00, 3, TRUE),
+(4, UPPER('LUXO'), '202', 230.00, 3, TRUE),
+(4, UPPER('SUITE'), '301', 330.00, 4, FALSE),
+(4, UPPER('SUITE'), '302', 330.00, 4, FALSE),
+(4, UPPER('PRESIDENCIAL'), '401', 570.00, 5, TRUE),
+(4, UPPER('PRESIDENCIAL'), '402', 570.00, 5, TRUE),
+(4, UPPER('FAMILIA'), '501', 240.00, 4, FALSE),
+(4, UPPER('FAMILIA'), '502', 240.00, 4, FALSE),
+
+-- Quartos para Accra Beach Resort (ID: 5)
+(5, UPPER('STANDARD'), '101', 190.00, 2, TRUE),
+(5, UPPER('STANDARD'), '102', 190.00, 2, TRUE),
+(5, UPPER('LUXO'), '201', 260.00, 3, FALSE),
+(5, UPPER('LUXO'), '202', 260.00, 3, FALSE),
+(5, UPPER('SUITE'), '301', 360.00, 4, TRUE),
+(5, UPPER('SUITE'), '302', 360.00, 4, TRUE),
+(5, UPPER('PRESIDENCIAL'), '401', 620.00, 5, FALSE),
+(5, UPPER('PRESIDENCIAL'), '402', 620.00, 5, FALSE),
+(5, UPPER('FAMILIA'), '501', 280.00, 4, TRUE),
+(5, UPPER('FAMILIA'), '502', 280.00, 4, TRUE);
+
+
+
+
+INSERT INTO quarto_fotos (quarto_id, foto) VALUES
+-- Fotos para os quartos do Hotel Lagos (ID: 1)
+(1, 'https://exemplo.com/hotel-lagos/101/foto1.jpg'),
+(1, 'https://exemplo.com/hotel-lagos/101/foto2.jpg'),
+(2, 'https://exemplo.com/hotel-lagos/102/foto1.jpg'),
+(2, 'https://exemplo.com/hotel-lagos/102/foto2.jpg'),
+(3, 'https://exemplo.com/hotel-lagos/201/foto1.jpg'),
+(3, 'https://exemplo.com/hotel-lagos/201/foto2.jpg'),
+(4, 'https://exemplo.com/hotel-lagos/202/foto1.jpg'),
+(4, 'https://exemplo.com/hotel-lagos/202/foto2.jpg'),
+(5, 'https://exemplo.com/hotel-lagos/301/foto1.jpg'),
+
+-- Fotos para os quartos do Hotel Cairo (ID: 2)
+(11, 'https://exemplo.com/hotel-cairo/101/foto1.jpg'),
+(11, 'https://exemplo.com/hotel-cairo/101/foto2.jpg'),
+(12, 'https://exemplo.com/hotel-cairo/102/foto1.jpg'),
+(12, 'https://exemplo.com/hotel-cairo/102/foto2.jpg'),
+(13, 'https://exemplo.com/hotel-cairo/201/foto1.jpg'),
+(13, 'https://exemplo.com/hotel-cairo/201/foto2.jpg'),
+(14, 'https://exemplo.com/hotel-cairo/202/foto1.jpg'),
+
+-- Fotos para os quartos do Cape Town Lodge (ID: 3)
+(21, 'https://exemplo.com/cape-town-lodge/101/foto1.jpg'),
+(21, 'https://exemplo.com/cape-town-lodge/101/foto2.jpg'),
+(22, 'https://exemplo.com/cape-town-lodge/102/foto1.jpg'),
+(22, 'https://exemplo.com/cape-town-lodge/102/foto2.jpg'),
+(23, 'https://exemplo.com/cape-town-lodge/201/foto1.jpg'),
+(23, 'https://exemplo.com/cape-town-lodge/201/foto2.jpg'),
+(24, 'https://exemplo.com/cape-town-lodge/202/foto1.jpg'),
+(24, 'https://exemplo.com/cape-town-lodge/202/foto2.jpg');
+
 

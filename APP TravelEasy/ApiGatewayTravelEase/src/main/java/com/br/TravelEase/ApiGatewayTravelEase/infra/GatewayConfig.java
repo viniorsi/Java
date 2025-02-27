@@ -32,9 +32,9 @@ public class GatewayConfig {
                         .filters(f -> f.filter(jwtAuthenticationFilter)) // 🚨 Aplica o filtro
                         .uri("http://localhost:8087"))
 
-                .route("Tickets", r -> r
-                        .path("/tickets/**")
-                        .filters(f -> f.filter(jwtAuthenticationFilter)) // 🚨 Aplica o filtro
+                .route("Hotels", r -> r
+                        .path("/hotel/**")
+//                        .filters(f -> f.filter(jwtAuthenticationFilter)) // 🚨 Aplica o filtro
                         .uri("http://localhost:8083"))
                 .build();
     }

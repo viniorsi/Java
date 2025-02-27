@@ -22,9 +22,8 @@ public interface QuartoRepository extends JpaRepository<Quarto, Long> {
             @Param("checkOut") LocalDate checkOut
     );
 
-    @Query("SELECT q FROM Quarto q " +
-            "WHERE q.quarto.id = :quartoId ")
-    Quarto buscarPorId(
+
+    Quarto findQuartoById(
             @Param("quartoId") Long quartoId
     );
 }
