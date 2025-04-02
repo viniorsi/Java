@@ -329,4 +329,17 @@ INSERT INTO quarto_fotos (quarto_id, foto) VALUES
 (24, 'https://exemplo.com/cape-town-lodge/202/foto1.jpg'),
 (24, 'https://exemplo.com/cape-town-lodge/202/foto2.jpg');
 
+CREATE TABLE transactions (
+                              id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                              user_id VARCHAR(255) NOT NULL,
+                              amount DOUBLE NOT NULL,
+                              currency VARCHAR(3) NOT NULL,
+                              payment_method VARCHAR(50) NOT NULL,
+                              status VARCHAR(20) NOT NULL,
+                              destination VARCHAR(255),
+                              travel_date DATETIME,
+                              booking_code VARCHAR(100),
+                              created_at DATETIME NOT NULL
+);
+
 

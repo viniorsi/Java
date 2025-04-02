@@ -35,6 +35,9 @@ public class Reserva {
 
     private Long usuario_id;
 
+    private int qtd_adultos;
+    private int qtd_criancas;
+
     private BigDecimal valor_total;
 
     @Enumerated(EnumType.STRING)
@@ -48,6 +51,8 @@ public class Reserva {
         this.checkIn = request.check_in();
         this.checkOut = request.check_out();
         this.usuario_id = request.userId();
+        this.qtd_adultos = request.adultCount();
+        this.qtd_criancas = request.childCount();
         this.valor_total = valor;
         this.statusReserva = StatusReserva.PENDENTE;
     }

@@ -9,6 +9,7 @@ import com.viniorsi.TravelEase.Domain.Destiny.Enums.CountriesEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -28,7 +29,7 @@ public class Destiny {
     private CountriesEnum country;
     private String description;
     private String image_url;
-    private Double daily_value;
+    private BigDecimal daily_value;
     @Enumerated(EnumType.STRING)
     private ContinentsEnum continent;
     @OneToMany(mappedBy = "destiny", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
